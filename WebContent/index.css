@@ -1,0 +1,382 @@
+
+
+				 html,body,h1,h2,h3,h4,h5,h6,form,ul{
+						margin:0;
+						padding:0;
+					}	
+
+				 header,footer,.content{
+				 	width:88%;
+				 }
+
+				 .content{
+				 	margin:0 auto;
+				    background-color: red;
+				 }
+
+
+				 header{
+				 	margin:0 auto;
+				 	background-color:#999999;
+				 	height:120px;
+				 }
+
+
+				 footer{
+				 	margin:0 auto;
+				 	background-color:#999999;
+		
+				 }
+
+				 .header_pic{
+				 	height:30px;
+				 	background-color: yellow;
+				 }
+
+
+				 .header_main{
+				 	margin-top:20px;
+				 	overflow: hidden;
+				 }
+
+				 #logo,.search_text,.shoppingCart{
+				 	float:left;
+                    margin-left:40px;
+                    height:60px;
+				 }
+
+				 .search_text{
+				 	width:30%;
+				 	
+
+				 	  background-color: #90c31f;
+				 
+				 }
+
+				 .shoppingCart{
+				 		 text-align: center;
+				 		   margin-left:100px;
+				 		 background-color: #90c31f;
+				 		 line-height: 56px;
+				 }
+
+				 .login_register{
+				 		float:right;
+				 	 width:20%;
+				 	 margin-right:40px;
+				 	  height:60px;
+				 	 background-color: #90c31f;
+
+				 }
+
+
+
+				 		.wide_page{
+				 			
+							background-color: #90c31f;
+				 		}
+
+						.wide_channel{
+						 	height: 35px;
+							line-height: 35px;
+							width:88%;
+							margin:0 auto;
+
+						}
+
+						.wide_channel_category{
+							width:17.6%;
+							height: 35px;
+							float:left;
+							
+						}
+
+
+
+						.other_links li{
+							list-style-type: none;
+							display: block;
+							float:left;
+							cursor: pointer;
+							line-height: 35px;
+							margin-left:10%;
+							text-align: center;
+							font-weight: bold;
+							font-size: 14px;
+						}
+
+						ul li{
+							list-style-type: none;
+						}
+
+						.clear{
+							clear:both;
+						}
+
+
+						.category_info{
+							position:absolute;
+							/* 设为absolute 的原因 ，是每个子类型的下属信息 都要显示到右侧相同位置，故设定右侧为absolute ,右侧需找到一个相对不变的位置进行定位，
+								就是这个子类型框。
+							*/
+							width:209px;
+						}
+
+
+						.list_item{
+							height:46px;
+							background-color: #FFF;
+							color:#cbcbcb;
+							border-right:1px solid  #90c31f;
+							background-color: yellow;
+						}
+
+						
+
+
+						.icon,.sub_category,.item_blank{
+							float:left;
+						}
+
+
+
+						.sub_category{
+							width:60%;
+							font-family: 微软雅黑,黑体,宋体,Arial, Helvetica, sans-serif;
+							font-size:12px;
+							line-height: 46px;
+							color:#AAA;
+						}
+
+
+						.icon{
+							height:46px;
+							width:20%;
+							background-color: red;
+						}
+
+						.item_blank{
+							line-height: 46px;
+							width:20%;
+						}
+
+						.list_item_line {
+					    height: 0px;
+					    width: 191px;
+					    border-bottom: 1px dotted #cbcbcb;
+					    float: left;
+					    margin: 0 0 0 10px;
+					    }
+
+
+
+					    .child_list{
+						
+							width: 760px;
+							height: 319px;
+							position:absolute;
+							left:209px;
+							top:-1px;
+						}
+
+
+                                           .child_list_left{
+                                                width:70%;	
+                                            
+                                            }
+
+                                            .child_list_left .child_list_dt{
+                                            	margin-left:5px;
+                                            	width:75px;
+                                            	float:left;
+                                            }
+
+                                             .child_list_left .child_list_dt b{
+                                             	line-height: 46px;
+                                             }
+
+
+                                            .child_list_left .child_list_dd{
+                                            	width:410px;
+                                            	margin:15px 5px 0 5px;
+                                            
+
+                                            	height:46px;
+                                            	float:left;
+                                            	line-height: 18px;
+
+                                            	border-bottom:1px dotted #CCC;
+                                            
+
+                                            }
+
+
+
+                                            .child_list_left .child_list_dd  a{
+                                            	text-decoration: none;
+
+                                            	font-size: 14px;
+                                            	color:#BBB;
+
+                                            } 
+
+
+                                            .child_list_right{
+                                            	position:absolute;
+                                            	top:0;
+                                                right:0;
+                                            	width:30%;
+                                            	
+                                            	height:321px;
+                                            }
+
+
+/*------------------------------------------------------焦点图相关样式  -----------------------------------------------------------*/
+                            .container,.container img{
+				        		width:760px;
+				        		height:319px;
+				        	}
+
+
+				        	.container{
+				        		position:absolute;
+				        		overflow: hidden;
+				        		left:290px;
+				        		/* 做准备*/
+
+				        	}
+
+				        	.list{
+				        		position: absolute;
+				        		width:4200px;
+				        		height:400px;
+				        		left:0;
+				        	}
+
+
+
+				        	.list img{
+				        		float:left;
+				        	}
+
+
+				        	.buttons{
+				        		position:absolute;
+				        		height:10px;
+				        		width:100px;
+				        		bottom:20px;
+				        		left:330px;
+				        
+
+				        	}
+
+				        	.buttons span{
+				        		cursor:pointer;/*点上去是手指*/
+				        		display: block;
+				        		float:left;
+				        		border:1px solid #fff;
+				        		width:10px;
+				        		height:10px;
+				        		border-radius: 50%;
+				        		background: #333;
+				        		margin-right:5px;
+
+				        	}
+
+				        	.focus_button[clicking="true"]{
+				        		background:#ff4500;
+				        	}
+
+
+				        	.arrow{
+				        		position:absolute;
+				        		top:150px;
+				        		line-height: 39px;
+				        		text-align:center;
+				        		font-size:36px;
+				        		font-weight:bold;
+				        		width:40px;
+				        		height:40px;
+				        		background-color: RGBA(0,0,0,0.3);
+				        		color: #fff;
+				        		display: none;
+				        	}
+
+				        	.arrow:hover{
+				        		background-color:RGBA(0,0,0,0.7);
+				        	}
+
+				        	.container:hover .arrow{
+				        			display: block;
+				        	}
+
+
+				        	#prev{
+				        		left:5px;
+				        	}
+
+				        	#next{
+				        		right:5px;
+				        	}
+
+				        	.container a{
+				        		text-decoration: none;
+				     		}
+/*------------------------------------------------------焦点图相关样式  -----------------------------------------------------------*/
+
+
+                        
+#new_comer{
+	width:218px;
+	height:319px;
+	position:absolute;
+    left:1050px;
+
+}
+
+.wide_bg{
+	height:355px;
+}
+
+.content_top{
+	overflow: hidden;
+}
+.usual_search,.rub_discount,.ad_picture,.on_sale_and_dynamic{
+
+	 height:140px;
+	 float:left;
+	 width:230px;
+	 background-color: yellow;
+
+}
+                    .links{
+						margin:5px 0;
+					}
+					.links li{
+							width:10%;
+							margin-left: 4%;
+							list-style-type: none;
+							float:left;
+							font: 14px Arial,Verdana,"宋体";
+					}
+
+					.links li[pos="first"]{
+							width:10%;
+							margin-left:0;
+							list-style-type: none;
+							float:left;
+							font: 14px Arial,Verdana,"宋体";
+					}
+
+					.copyright{
+						margin-top:20px;
+						font: 12px Arial,Verdana,"宋体";
+						text-align: center;
+					}
+
+					#login_picture{
+						float:left;
+						width:300px;
+						margin-left:18%;
+						margin-top:57.5px;
+					}

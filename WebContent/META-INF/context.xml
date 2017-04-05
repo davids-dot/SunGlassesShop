@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Context[
+	<!ELEMENT Context (Resource+)>
+	<!ELEMENT  Resource EMPTY>
+	<!ATTLIST Resource 
+	 name CDATA #IMPLIED
+	 auth CDATA #IMPLIED
+	 type CDATA #IMPLIED
+	 username CDATA #IMPLIED
+	 password CDATA #IMPLIED
+	 driverClassName CDATA #IMPLIED
+	 url CDATA #IMPLIED
+	 maxTotal CDATA #IMPLIED
+	 maxIdle CDATA #IMPLIED
+	>
+ ]>
+ 
+ <!--  <!DOCTYPE rootelement SYSTEM "url"> -->
+ <!--  <!DOCTYPE rootelement PUBLIC "url"> -->
+
+<Context>
+		<Resource name="jdbc/EmployeeDB"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="root"
+            password="1234"
+            driverClassName="com.mysql.jdbc.Driver"
+            url ="jdbc:mysql://localhost:3306/sun?characterEncoding=UTF-8"
+            maxTotal="8"
+            maxIdle="4"/>
+
+
+</Context>

@@ -1,0 +1,152 @@
+@CHARSET "UTF-8";
+
+
+					html,body,h1,h2,h3,h4,h5,h6,form{
+						margin:0;
+						padding:0;
+					}	
+
+					header,footer{
+						width:62.5%;
+						margin:5px auto;
+					}	
+
+					.content{
+						width:100%;
+						height:475px;
+						background-color: #E93854;
+						overflow: hidden;
+					}
+
+
+					.login{
+						float:right;
+						margin:100px 180px;
+						
+						border-radius: 5px;
+						width:30%;
+						background-color: white;
+					}
+
+					
+
+					#login_title{
+
+							height:54px;
+							line-height: 54px;
+							text-align:center;
+							font-family: "微软雅黑";
+							font-size: 20px;
+							color: #E93854;
+
+					}
+
+
+					.input_line{
+
+						/*background-color: blue;*/
+						text-align: center;
+					}
+
+
+					.input_line input{
+						width:62%;
+						margin:10px auto;
+						height:35px;
+						border:1px solid #BDBDBD;
+						border-radius: 2px;
+						padding-left:11%;
+						font-family: "微软雅黑";
+						font-size: 16px;
+					}		
+
+					#user_name{
+						background:url(../images/head.png) no-repeat left center;
+					}
+					#password{
+						background:url(../images/lock.png) no-repeat left center;
+					}
+
+					.other_choice{
+						margin-top:20px;
+						font-size: 14px;
+						overflow: hidden;
+					}
+
+					.other_choice[pos="bottom"]{
+							margin-bottom: 5px;						
+					}
+
+					.choice_right{
+						display:block;
+						float:right;
+						margin-right:5%;
+					}
+
+					.choice_left{
+						margin-left:5%;
+					}
+
+					
+
+					.other_choice a:link,.other_choice a:visited{
+						text-decoration: none;
+						color:black;
+					}
+
+					.other_choice a:hover,.other_choice a:active{
+						text-decoration: none;
+						color:red;
+					}
+
+					
+
+					#login_button{
+						margin:20px 10% 0;
+						width:80%;
+						font-family: "微软雅黑";
+						font-size: 16px;
+						height:33px;
+						background-color: #E4393C;
+						border:1px solid #BDBDBD;
+					}
+					#return_homepage{
+						float:left;
+						width:20%;
+						padding-left:5%;
+						background:url(images/shoppingCart.png) no-repeat left center;
+					}
+
+
+					.links{
+						margin:20px 0;
+					}
+					.links li{
+							width:10%;
+							margin-left: 4%;
+							list-style-type: none;
+							float:left;
+							font: 14px Arial,Verdana,"宋体";
+					}
+
+					.links li[pos="first"]{
+							width:10%;
+							margin-left:0;
+							list-style-type: none;
+							float:left;
+							font: 14px Arial,Verdana,"宋体";
+					}
+
+					.copyright{
+						margin-top:20px;
+						font: 12px Arial,Verdana,"宋体";
+						text-align: center;
+					}
+
+					#login_picture{
+						float:left;
+						width:300px;
+						margin-left:18%;
+						margin-top:57.5px;
+					}
+

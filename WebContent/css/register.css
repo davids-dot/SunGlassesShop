@@ -1,0 +1,206 @@
+@CHARSET "UTF-8";
+
+
+
+			html,body,h1,h2,h3,h4,h5,h6,form{
+						margin:0;
+						padding:0;
+			}
+			header{
+
+			}	
+
+
+			a{
+				text-decoration:none;
+			}
+
+			.container{
+				background-color: #E93854;
+				height:600px;
+			}
+
+
+					.login{
+						float:left;
+						margin:20px 400px;
+						
+						border-radius: 5px;
+						width:50%;
+						background-color: white;
+						background-color:white; 
+						border:1px solid #5a2b43;
+					
+					}
+
+
+					
+
+					
+
+					#login_title{
+
+							height:80px;
+							line-height: 80px;
+							text-align:center;
+							font-family: "微软雅黑";
+							font-size: 20px;
+							color: #E93854;
+
+					}
+
+
+					.inputWrapper{
+						overflow: hidden;
+						margin-bottom: 15px;
+						padding-left: 10px;
+						margin-left:20px;
+					
+					}
+
+					.inputWrapper label{
+						display: block;
+						float:left;
+						line-height: 35px;
+						width:72px;
+						text-align: right;
+					}
+
+					.inputWrapper label[class="error"]{
+						display: block;
+						float:left;
+						line-height: 35px;
+						width:218px;
+						text-align:left;
+						padding-left:40px;
+						
+					}
+
+
+					.input_line{
+						overflow: hidden;
+					}
+
+
+					.input_line input,.input_line select{
+						width:40%;
+						height:35px;
+						margin-left:50px;
+						border:1px solid #BDBDBD;
+						border-radius: 2px;
+						padding-left:45px;
+						font-family: "微软雅黑";
+						font-size: 14px;
+						float:left;
+
+					}
+
+
+					#user_name{
+						background:url(../images/head.png) no-repeat left center;
+					}
+					#pass_word,#password2{
+						background:url(../images/lock.png) no-repeat left center;
+					}
+
+					#mobile_phone,#pro_select,#city_select,#area_select{
+						background:url(../images/inputBack.jpg) no-repeat left center;
+					}
+
+
+					
+
+
+
+					#mobile_phone{
+						/*background:url no-repeat ;*/
+					}
+
+
+				
+
+					#login_button{
+						margin:30px 10% 40px;
+						width:50%;
+						font-family: "微软雅黑";
+						font-size: 16px;
+						height:33px;
+						background-color: #E4393C;
+						border:1px solid #BDBDBD;
+						border-radius: 5px;
+					}
+
+
+					#verifyCode{
+						width:35%;
+						float:left;
+						margin-left:50px;
+						margin-right: 0;
+						background:url(../images/inputBack.jpg) no-repeat left center;
+					}
+					
+					
+					
+
+
+					#reGetCode{
+						background-color:#fcfcfc;
+						height:35px;
+						
+						float:left;
+						margin-left:5px;
+						border-radius: 5px;
+						font-size:12px;
+						line-height:35px;
+						border:1px solid #b4b4b4;
+						color:#595959;
+						padding-left: 5px;
+						padding-right:5px;
+						width:105px;
+						text-align:center;
+
+					}
+
+					#reGet[disabled="true"]{
+						color:grey;
+					}
+					
+/******************************表单验证样式**********************************************/
+					.error{
+						background:url(../images/false2.png) no-repeat ;
+						font-size:12px;
+					
+						color:#EA5200;
+						height:35px;
+						width:50%;
+					}
+					
+					
+					#reGetCode + .error{
+						background:url(../images/false2.png) no-repeat ;
+						font-size:12px;
+					
+						color:#EA5200;
+						height:35px;
+						margin-left:125px;
+					
+					}
+					
+				
+					.valid{
+						height:35px;
+						background:url(../images/true2.png) no-repeat ;
+					}
+					
+					
+					#reGetCode + .valid{
+					    margin-left:5px;
+						height:35px;
+						background:url(../images/true2.png) no-repeat ;
+					}
+
+				
+
+
+
+			
