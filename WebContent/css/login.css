@@ -21,7 +21,7 @@
 
 					.login{
 						float:right;
-						margin:100px 180px;
+						margin:50px 180px;
 						
 						border-radius: 5px;
 						width:30%;
@@ -51,7 +51,7 @@
 
 					.input_line input{
 						width:62%;
-						margin:10px auto;
+						margin:10px 10px 10px ;
 						height:35px;
 						border:1px solid #BDBDBD;
 						border-radius: 2px;
@@ -64,7 +64,12 @@
 						background:url(../images/head.png) no-repeat left center;
 					}
 					#password{
-						background:url(../images/lock.png) no-repeat left center;
+						background:url(../images/lock.png) no-repeat left ;
+					
+					}
+					
+					#verifyCode{
+					 background:url(../images/lock.png) no-repeat left ;
 					}
 
 					.other_choice{
@@ -114,7 +119,7 @@
 						float:left;
 						width:20%;
 						padding-left:5%;
-						background:url(images/shoppingCart.png) no-repeat left center;
+						background:url(../images/shoppingCart.png) no-repeat left center;
 					}
 
 
@@ -146,7 +151,12 @@
 					#login_picture{
 						float:left;
 						width:300px;
-						margin-left:18%;
+						margin-left:15%;
 						margin-top:57.5px;
+					}
+					
+					.error{
+					   text-align:center;
+					   color:red;
 					}
 

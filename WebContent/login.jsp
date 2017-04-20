@@ -20,7 +20,7 @@
 				<div class="content">
 
 						<div id="login_picture">
-						  <img src="images/ad_pic4.jpg" width="500" />
+						  <img src="images/ad_pic4.jpg" width="500" height="340" />
 						</div>
 
 
@@ -34,25 +34,35 @@
 
 								<div id="text_input">
 
-										<form action="#" method="post">
+										<form action="/SunGlassesShop/LoginServlet" method="post">
 										<div class="input_line">
-										     <input type="text" name="user_name" id="user_name" placeholder="xxxxxxxxx"></input>
+										    用户名<input type="text" name="user_name" id="user_name" placeholder="请输入用户名" required></input>
 
 										 </div>
 
 										<div class="input_line" >
-											  <input type="text" name="pass_word" id="password" placeholder="密码"></input>
+											密码&nbsp;&nbsp;&nbsp;<input type="text" name="pass_word" id="password" placeholder="密码" required></input>
 										</div>
-
+										
+										
+										<div class="input_line" >
+										<span style="position:relative;left:-25px;">验证码</span>  <input type="text" name="verify_Code" id="verifyCode" placeholder="验证码"
+											  style="width:100px;margin-left:-21px;" pattern="[\u4e00-\u9fa5]{4}"  required></input>
+											  <img src="/SunGlassesShop/VerifyImageServlet" onclick="changeVerifyImage(this)" 
+											  style="display:inline-block;vertical-align:middle;" />
+										</div>
+										
+										<div  class="error">${errors.error1}</div>
+										<div class="error">${errors.error2}</div>
 
 
 										<div class="other_choice">
 												<input class="choice_left" type="checkBox" name="rember_password" id="rember_password"/>记住密码
 									
-												<a class="choice_right" name="forget_password" id="forget_password" href="#"> 忘记密码</a>
+												<a class="choice_right" id="forget_password" href="#"> 忘记密码</a>
 										</div>
 
-
+										<input type ="hidden" name="type" value="Customer" />
 										 <input type ="submit" id="login_button" name="login_button" value="登       录" ></input> 
 
 
@@ -61,7 +71,7 @@
 										 		<div id="return_homepage">
 												<a class="choice_left" href="" >先去逛逛</a>
 												</div>
-												<a class="choice_right" name="register" id="register" href="#"> 快速注册</a>
+												<a class="choice_right"  id="register" href="#"> 快速注册</a>
 										</div>
 
 
@@ -95,4 +105,10 @@
 
                  </footer>
 </body>
+	        <script>
+					function changeVerifyImage(img){
+						img.src=img.src+"?"+new Date().getTime();
+						}		
+			
+			</script>
 </html>

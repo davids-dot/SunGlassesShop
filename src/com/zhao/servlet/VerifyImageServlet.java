@@ -47,13 +47,14 @@ public class VerifyImageServlet extends HttpServlet {
 
 		drawRandomLine(g);
 
-		drawRandomNum((Graphics2D) g);
+		String loginCode = drawRandomNum((Graphics2D) g);
 
 		response.setContentType("image/jpeg");
 		response.setHeader("Cache-Control", "no-chche");
 		response.setHeader("Pragma", "no-chche");
 		response.setIntHeader("Expires", -1);
 
+		request.getSession().setAttribute("loginCode", loginCode);
 		ImageIO.write(image, "jpg", response.getOutputStream());
 	}
 
@@ -85,7 +86,7 @@ public class VerifyImageServlet extends HttpServlet {
 
 	}
 
-	private void drawRandomNum(Graphics2D g) {
+	private String drawRandomNum(Graphics2D g) {
 
 		String base = "\u7684\u4e00\u4e86\u662f\u6211\u4e0d\u5728\u4eba"
 				+ "\u4eec\u6709\u6765\u4ed6\u8fd9\u4e0a\u7740\u4e2a\u5730"
@@ -101,20 +102,19 @@ public class VerifyImageServlet extends HttpServlet {
 		g.setColor(Color.RED);
 		g.setFont(new Font("宋体", Font.BOLD, 25));
 
+		char[] arr = new char[4];
 		char ch;
 		int x = 5;
 		for (int i = 0; i < 4; i++) {
 			ch = base.charAt(random.nextInt(base.length()));
-
+			arr[i] = ch;
 			double theta = random.nextInt() % 20 * Math.PI / 180;
-
 			g.rotate(theta, x, 25);
 			g.drawString(ch + "", x, 25);
 			g.rotate(-theta, x, 25);
 			x += 30;
-
 		}
-
+		return new String(arr);
 	}
 
 }

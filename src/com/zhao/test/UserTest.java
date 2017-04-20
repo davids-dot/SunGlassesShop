@@ -3,7 +3,7 @@ package com.zhao.test;
 import org.junit.Test;
 
 import com.zhao.dao.UserDao;
-import com.zhao.dao.UserDaoImpl;
+import com.zhao.dao.impl.UserDaoImpl;
 import com.zhao.entity.User;
 
 public class UserTest {

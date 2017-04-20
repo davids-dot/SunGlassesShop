@@ -1,0 +1,230 @@
+$().ready(function(){
+                		
+                		$("#userRegister").validate(
+                		{
+                			onkeyup:false,
+                			onclick:false,
+                			
+
+                			rules:{
+                				name:{
+                					maxlength:12,
+                					minlength:8,
+                					remote:{
+                						url:"/SunGlassesShop/RegisterServlet?type=verify&param=Name",
+                						type:"post",
+                						dataType:"json",
+                						data:{
+                							name:function(){
+                								return $("#user_name").val();
+                							}
+                						}
+                					}
+              
+                				},
+                				
+                				password:{
+                					maxlength:15,
+                					minlength:8
+                				},
+                				password2:{
+                					equalTo:"#pass_word"
+                				},
+
+// isPhoneNumber 是添加的自定义验证方法，其中包含错误提示信息
+
+                				mobilephone:{
+                					isPhoneNumber:true,
+                                    remote:{
+                                        url:"/SunGlassesShop/RegisterServlet?type=verify&param=Phone",
+                                        type:"post",
+                                        dataType:"json",
+                                        data:{
+                                            mobilephone:function(){
+                                                return $("#mobile_phone").val();
+                                            }
+                                        }
+                                    }
+
+                				},
+                				
+                				verifyCode:{
+                					remote:{
+                						url:"/SunGlassesShop/MessageServlet?type=verifyCode",
+                						type:"post",
+                						dataType:"json",
+                						data:{
+                							verifyCode:function(){
+                								return $("#verifyCode").val();
+                							}
+                						}
+                					}
+                				}
+                			},
+                			
+                			messages:{
+                				name:{
+                                  remote:"不好，该用户名已被占用",
+                                },
+                                mobilephone:{
+                                    remote:"该手机已经注册过了"
+                                },
+                				verifyCode:"验证码错误请重新获取"
+                			},
+
+
+// <div class ="absolute_parent" id="ab_p">
+//             <div class="bubble_tag" >
+//                 <div class="bubble"></div>
+//             </div>
+        
+    
+//     </div>
+                			
+//                			id="user_name"
+//                				id="pass_word"
+//                				id="password2"
+//                				id="mobile_phone"
+//                				id="verifyCode" 
+//                				id="verifyCode" 
+                		
+                			errorPlacement:function(error,element){
+
+                                var ab_p =document.getElementById("ab_p");
+                                var div=document.createElement("div");
+                                 div.setAttribute("class","bubble_tag")
+                                error.appendTo(div);
+                                ab_p.appendChild(div);
+                                
+                                if(element.attr("id")=="user_name"){
+                                	div.style.cssText="top:38px";
+                                	return ;
+                                }
+                                
+                                if(element.attr("id")=="pass_word"){
+                                	div.style.cssText="top:78px";
+                                	return ;
+                                }
+                                
+                                if(element.attr("id")=="password2"){
+                                	div.style.cssText="top:118px";
+                                	return ;
+                                }
+                                
+                                if(element.attr("id")=="mobile_phone"){
+                                	div.style.cssText="top:158px";
+                                	return ;
+                                }
+                                
+                                if(element.attr("id")=="verifyCode"){
+                                	div.style.cssText="top:198px";
+                                	return ;
+                                }
+                                
+                              
+                			},
+                			success:"valid"
+
+                			
+                		});
+                });
+
+
+/**
+ * 
+ */
+
+/*****************************注册表单相关*********************************************/
+                var interval;
+                var count =60;
+                var reGet;   //链接
+                var recentlyClick =false;
+                var xhr;
+                var mobile;
+                var verifyCode;
+                var canGet =false;
+              
+
+                	window.onload =function(){
+                		var getCode = false; 
+                		 reGet = document.getElementById("reGet");
+                		 reGet.setAttribute("disabled","true");
+                		 reGetCode=document.getElementById("reGetCode");
+                		 mobile =document.getElementById("mobile_phone");
+                  
+                		 
+                		
+                        $("#mobile_phone").focusout(event.data,checkNull);
+                        $("#verifyCode").focus(event.data,checkNull);
+
+                		 verifyCode =document.getElementById("verifyCode");
+                		 reGet.onclick = reGetClicked;
+                		 
+                	};
+ 
+                	
+                	function checkNull(){
+                		
+                
+                            	reGetCode.style.display="block";
+                            	canGet =true;
+                            
+                	}
+                	
+
+  /*************************手机号合法才能获取验证码******************************************/             
+
+                	function reGetClicked(){
+                		  if(!canGet) return false;
+                		  if(recentlyClick) return false;
+                			recentlyClick =true;                     // 禁止在点击后一分钟内再点击
+                			
+                			
+                			sendRequest();
+
+                			 count=60;	
+                			 reGet.setAttribute("disabled","true");
+                			 reGetCode.style.backgroundColor="#D7D7D7";
+
+							 interval = window.setInterval(countDown,1000);
+
+                			return false;
+
+                	}
+                	
+                	
+                	function sendRequest(){
+                		xhr= new XMLHttpRequest();
+                		xhr.open('post','/SunGlassesShop/MessageServlet');
+                		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                		xhr.send("mobile="+mobile.value+"&type=register");
+                		
+                		xhr.onreadystatechange =function(){
+                			if(xhr.readystate==4&&xhr.status==200){
+                				
+                			}
+                		}
+                		
+                		
+                	}
+
+                	function countDown(){	
+                		reGet.text="("+count+"秒后)重新获取";
+                		count--;
+                		if(count < 0) {
+                			window.clearInterval(interval);
+                			reGet.setAttribute("disabled","false");
+                			reGet.text="重新获取";
+                			recentlyClick =false;
+                		}
+                	}
+
+
+
+                	$.validator.setDefaults({
+                		submitHandler:function(form){
+                			form.submit();
+                			
+                		}
+                	});
+

@@ -1,5 +1,7 @@
 package com.zhao.service;
 
-public class LoginRegisterService {
+public interface LoginRegisterService {
+
+	boolean isCorrectPair(String userName, String password, String type);
 
 }

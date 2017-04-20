@@ -1,7 +1,7 @@
 package com.zhao.service;
 
 import com.zhao.dao.UserDao;
-import com.zhao.dao.UserDaoImpl;
+import com.zhao.dao.impl.UserDaoImpl;
 import com.zhao.entity.User;
 
 /**
@@ -23,7 +23,6 @@ public class VerifyService {
 	 * @return
 	 */
 	public boolean nameExist(String name, String userType) {
-		System.out.println("验证的用户名是" + name);
 		if (name == null || "".equals(name)) {
 			return true;
 		}
@@ -42,6 +41,7 @@ public class VerifyService {
 		user = new User();
 		user.setTelephone(telephone);
 		user.setType(userType);
+
 		return udao.existUser(user);
 	}
 

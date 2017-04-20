@@ -8,6 +8,7 @@ public class User {
 	private String password;
 	private String telephone;
 	private String type;
+	private Integer isDele;
 
 	public User() {
 
@@ -58,6 +59,21 @@ public class User {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Integer getIsDele() {
+		return isDele;
+	}
+
+	public void setIsDele(Integer isDele) {
+		this.isDele = isDele;
+	}
+
+	public String toString() {
+		String s = "user_id:" + user_id + "\n" + "name:" + name + "\n" + "password:" + password + "\n" + "telephone"
+				+ telephone + "\n" + "isDele:" + isDele + "\n";
+
+		return s;
 	}
 
 }

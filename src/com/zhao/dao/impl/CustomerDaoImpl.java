@@ -1,7 +1,8 @@
-package com.zhao.dao;
+package com.zhao.dao.impl;
 
 import java.util.List;
 
+import com.zhao.dao.CustomerDao;
 import com.zhao.entity.Customer;
 
 public class CustomerDaoImpl implements CustomerDao {

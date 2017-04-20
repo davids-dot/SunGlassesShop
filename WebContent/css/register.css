@@ -1,11 +1,10 @@
 @CHARSET "UTF-8";
 
-
-
-			html,body,h1,h2,h3,h4,h5,h6,form{
+			html,body,h1,h2,h3,h4,h5,h6,form,div,img{
 						margin:0;
 						padding:0;
 			}
+			
 			header{
 
 			}	
@@ -158,11 +157,16 @@
 						padding-right:5px;
 						width:105px;
 						text-align:center;
+						display: none;
 
 					}
 
 					#reGet[disabled="true"]{
 						color:grey;
+					}
+					
+					#reGet[disabled="false"]{
+						color:#000;
 					}
 					
 /******************************表单验证样式**********************************************/

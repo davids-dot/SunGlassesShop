@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title></title>
+		<style>
+	    .read-agreement-content{
+	    	padding:10px;
+	    	font-size:12px;
+	    }
+
+	    p{
+	    	margin:5px 0;
+	    }
+	    .question{
+	    	font-weight:bold;
+	    }
+	    .read-agreement-content .read-agreement-paper .answer {
+          margin-bottom: 38px;
+         }
+
+         .alertion{
+         	color:#ee4531;
+         }
+         
+
+		</style>
+		
+	</head>
+
+
+    <body>
+
+			  <div class="read-agreement-content">
+			   		<h1 style="text-align: center;">开店须知</h1>
+
+			    <div class="read-agreement-paper">
+				<p class="question">1、我在淘宝已经开了个店了，我用别人的身份证再开一个店可以吗？</p>
+				<p class="answer">答：不可以。未经淘宝平台同意，将本人淘宝账号提供给他人作开店使用，否则由此导致相关争议、诉讼及因店铺经营中的违法违规行为导致一切人身、财产权益损害，均由本人自行承担全部民事、行政及刑事责任。</p>
+
+				<p class="question">2、我可以把店铺转租给其他人吗?</p>
+				<p class="answer">答：不可以。未经淘宝平台同意，将本人淘宝账号提供给他人作开店使用，否则由此导致相关争议、诉讼及因店铺经营中的违法违规行为导致一切人身、财产权益损害，均由本人自行承担全部民事、行政及刑事责任。</p>
+
+				<p class="question">3、开淘宝店要收费吗?</p>
+				<p class="answer">答：淘宝开店是免费的，不收取任何服务费用。</p>
+
+				<p class="question">4、我可以开多个淘宝店吗?</p>
+				<p class="answer">答：不可以。一张身份证（一张营业执照）只能开一个淘宝店铺。如是企业店铺，开店后营业执照不得注销。</p>
+
+				<p class="question">5、我已经开过淘宝店，现在想要注销原来的店铺重新开店，可以吗?</p>
+				<p class="answer">答：不可以，淘宝暂时不提供注销店铺的服务。用户一但成功开店就无法再用身份证（营业执照）另开一家淘宝店铺。</p>
+				</div>
+
+
+				<i class="alertion"><!-- react-text: 98 -->淘宝网在任何情况下都不会用QQ与您取得联系, 任何使用QQ联系您的"工作人员"都是骗子。
+                </i>
+
+            <style>
+            .read-action{
+            	height:100px;
+            	padding-top:20px;
+            	padding-left:100px;
+            }
+
+            input{
+            	width:20%;
+            	height:40px;
+            	float:left;
+            	margin-left:13%;
+            }
+
+            </style>
+
+			<div class="read-action">
+                <input type="button" id ="pre" value="上一步"/>
+                <input type="button" id="next" value="我已了解,继续开店"/>
+
+			</div>
+	
+    </div>
+
+       <script type="text/javascript">
+
+       		function ReadAction(){
+       			this.pre=document.getElementById("pre");
+       			this.next=document.getElementById("next");
+       			
+       		}
+
+       		ReadAction.prototype={
+       			constructor:ReadAction,
+       			goNext:function(){
+       				window.location.href="SellerVerify.html";
+
+       			}
+       		}
+
+           window.onload =function(){
+                  var readA = new ReadAction();
+                  readA.next.onclick=readA.goNext;
+           		
+
+           }
+       </script>
+
+    </body>
+
+</html>

@@ -27,11 +27,13 @@
 					var xhr = new XMLHttpRequest();
 
 					xhr.open('get','/SunGlassesShop/AddressServlet?queryType=city&proName='+pro_name);
+
 					xhr.send();
 
 					xhr.onreadystatechange =function(){
 
 						if(xhr.readyState ==4 && xhr.status ==200){
+
 								setCities(this);
 						}
 					};
@@ -68,11 +70,10 @@
 					    
 					    for(var i=0;i<areas.length;i++){
 					    	var opt = document.createElement("option");
-					    	opt.setAttribute("value",areas[i].innerHTML);
-					    	opt.innerHTML =areas[i].innerHTML;
+					    	opt.setAttribute("value",areas[i].getAttribute("area_id"));
+					    	opt.innerHTML =areas[i].getAttribute("area");
 					    	area_select.appendChild(opt);
 					    }
-					   
 				}
 
 
@@ -97,7 +98,7 @@
 
 				function getProvinces(){
              		
-             		 pro_select = document.querySelector("#pro_select");
+             		 pro_select = document.getElementById("pro_select");
              		 city_select = document.getElementById("city_select");
              		 area_select =document.getElementById("area_select");
 

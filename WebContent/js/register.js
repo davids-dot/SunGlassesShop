@@ -10,21 +10,43 @@
                 var xhr;
                 var mobile;
                 var verifyCode;
+                var canGet =false;
+              
 
                 	window.onload =function(){
                 		var getCode = false; 
                 		 reGet = document.getElementById("reGet");
+                		 reGet.setAttribute("disabled","true");
                 		 reGetCode=document.getElementById("reGetCode");
                 		 mobile =document.getElementById("mobile_phone");
+                  
+                		 
+                		
+                        $("#mobile_phone").focusout(event.data,checkNull);
+                        $("#verifyCode").focus(event.data,checkNull);
+
                 		 verifyCode =document.getElementById("verifyCode");
                 		 reGet.onclick = reGetClicked;
                 		 
                 	};
+ 
+                	
+                	function checkNull(){
+                		
+                
+                            	reGetCode.style.display="block";
+                            	canGet =true;
+                            
+                	}
+                	
+
+  /*************************手机号合法才能获取验证码******************************************/             
 
                 	function reGetClicked(){
-
+                		  if(!canGet) return false;
                 		  if(recentlyClick) return false;
                 			recentlyClick =true;                     // 禁止在点击后一分钟内再点击
+                			
                 			
                 			sendRequest();
 

@@ -45,11 +45,9 @@ public class AddressServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
-		response.setContentType("text/xml;charset=UTF-8"); // 必须先设编码再获取输出流对象
 
 		String queryType = request.getParameter("queryType");
+		response.setContentType("text/xml");
 
 		if (queryType == null || "".equals(queryType))
 			throw new RuntimeException("无请求类型");
@@ -72,14 +70,15 @@ public class AddressServlet extends HttpServlet {
 		String cityId = request.getParameter("cityId");
 		if (cityId == null)
 			throw new RuntimeException("无城市信息");
-		String sql = "select area from areas where  city_id= ?";
+		String sql = "select area_id,area from areas where  city_id= ?";
 
 		List<Object> param = new ArrayList<Object>();
 		param.add(cityId);
-		List<String> rs = null;
+		Map<String, String> map = null;
 
 		try {
-			rs = (List<String>) DBUtil.executeQuery(sql, param, new ListHandler<String>());
+			// area, area_id
+			map = (Map<String, String>) DBUtil.executeQuery(sql, param, new MapResultHandler<String, String>());
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
@@ -87,8 +86,8 @@ public class AddressServlet extends HttpServlet {
 		Document doc = DocumentHelper.createDocument();
 		Element root = doc.addElement("areas");
 
-		for (String city : rs) {
-			root.addElement("area").addText(city);
+		for (Entry<String, String> en : map.entrySet()) {
+			root.addElement("area").addAttribute("area", en.getValue()).addAttribute("area_id", en.getKey());
 		}
 
 		OutputFormat format = OutputFormat.createCompactFormat();
@@ -109,6 +108,7 @@ public class AddressServlet extends HttpServlet {
 	private void queryCity(HttpServletRequest request, HttpServletResponse response) {
 
 		String proName = request.getParameter("proName");
+
 		if (proName == null)
 			throw new RuntimeException("无省份信息");
 		String sql = "select city_id,city from cities where  province_id=(" + "select province_id from provinces "
@@ -132,6 +132,7 @@ public class AddressServlet extends HttpServlet {
 
 		OutputFormat format = OutputFormat.createCompactFormat();
 		try {
+
 			XMLWriter writer = new XMLWriter(response.getOutputStream(), format);
 			writer.write(doc);
 			writer.close();

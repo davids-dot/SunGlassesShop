@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.zhao.dao.UserDaoImpl;
+import com.zhao.dao.impl.UserDaoImpl;
 import com.zhao.entity.User;
 import com.zhao.service.VerifyService;
 
@@ -60,16 +60,12 @@ public class RegisterServlet extends HttpServlet {
 
 	private void forward(HttpServletRequest request, HttpServletResponse response) {
 
-		String userType = mapUserType(request.getHeader("referer"));
-
-		if (userType.equals("Customer")) {
-			try {
-				request.getRequestDispatcher("/jsp/successRegister.jsp").forward(request, response);
-			} catch (ServletException | IOException e) {
-				e.printStackTrace();
-			}
-			return;
+		try {
+			request.getRequestDispatcher("/jsp/successRegister.jsp").forward(request, response);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
 		}
+		return;
 
 	}
 
@@ -117,7 +113,8 @@ public class RegisterServlet extends HttpServlet {
 			return "Admin";
 		}
 
-		if (pre.equals("Seller_register.jsp")) {
+		if (pre.equals("Seller_register.jsp") || pre.equals("Seller_register.html")) {
+
 			return "Seller";
 		}
 

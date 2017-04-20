@@ -11,12 +11,7 @@
 		
 			</style>
 			
-			<script>
-					function changeVerifyImage(img){
-						img.src=img.src+"?"+new Date().getTime();
-						}		
 			
-			</script>
 		</head>
 
 

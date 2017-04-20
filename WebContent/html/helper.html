@@ -1,0 +1,141 @@
+ <!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+
+
+     /*.arrow{
+     
+    }*/
+
+    .arrows{
+      width:700px;
+      height:80px;
+      background-color: red;
+      position:relative;
+    }
+
+    .arrow{
+      width:100px;
+      height:80px;
+      margin-right:100px;
+      background-color: blue;
+      display:inline-block;
+    }
+
+    .arrow:before{
+      /* width:20px;
+       height:20px;
+       background-color: black;*/
+      content:"";
+      display:inline-block;
+      border:24px solid black;
+      border-top-width: 40px;
+      border-bottom-width: 40px;
+      border-left-color: transparent;
+      position:relative;
+      left:115px;
+    
+    }
+
+     .arrow:after{
+      content:"";
+      display:inline-block;
+      border:24px solid black;
+      border-top-width: 40px;
+      border-bottom-width: 40px;
+      border-color: transparent transparent transparent black;
+      position:relative;
+      left:52px;
+    }
+    
+    
+     
+  
+    </style>
+    
+  </head>
+
+
+    <body>
+
+      <!-- 上传数据必须带有name 属性，否则不能上传 -->
+    <form action="/SunGlassesShop/FileUploadServlet" enctype="multipart/form-data"
+      method="post">
+          <input type="range" min="0" max="10" step="5" />
+
+          用户名<input name="username" type="text" />
+
+          <input type="file" name="file" id="file" size="80" accept="image/*" />
+
+         <input type="button" value="展示文件名" onclick="showFilename()"/>
+                      
+         <textarea name="info" id="fileNames" cols="100" ></textarea>
+
+         <input  type="submit" value="提交" />
+    </form>
+
+         <!--  <script>
+
+          function showFilename(){
+
+            var files=document.getElementById("file").files;
+           
+            var fileNames =document.getElementById("fileNames");
+            var  s="";
+        
+            var reader = new FileReader();
+            reader.readAsText(files[0]);
+
+            reader.onload =function(){
+            fileNames.innerHTML=this.result;
+            };        
+  
+          }
+          </script> -->
+            
+         
+      
+
+
+
+
+
+
+
+    </body>
+
+</html>
+    
+
+
+
+
+
+
+
+
+
+
+
+     <!--     <li class="category last-category"> 
+          <div class="category-name">
+           <span class="category-icon">&nbsp;</span>客户服务
+           <span class="icon J_AppToggle" data-id="58" unselectable="on"><b class="close"></b><b class="open"></b></span>
+          </div> 
+          <ol class="category-app clearfix J_Category_58"> 
+           <li class="common-app"><a href="https://refund.taobao.com/refund_list.htm?banner=1&amp;mytmenu=tuikuan" title="退款管理" data-spm="d79">退款管理</a></li> 
+           <li class="common-app"><a href="https://myseller.taobao.com/app.htm?aid=8&amp;cid=58&amp;fromopenshop=true" title="售后管理" data-spm="d8">售后管理</a></li> 
+           <li class="common-app"><a href="https://myseller.taobao.com/app.htm?aid=21&amp;cid=58&amp;fromopenshop=true" title="举报管理" data-spm="d21">举报管理</a></li> 
+           <li class="common-app"><a href="https://myseller.taobao.com/app.htm?aid=9&amp;cid=58&amp;fromopenshop=true" title="咨询回复" data-spm="d9">咨询回复</a></li> 
+           <li class="normal-app"><a href="https://law.taobao.com/rulefaces/rule_url_proxy.htm" title="违规记录" data-spm="d77">违规记录</a></li> 
+           <li class="normal-app"><a href="https://xiaobao.taobao.com/prepay/prepay_entry.htm" title="消费者保障服务" data-spm="d80">消费者保障服务</a></li> 
+           <li class="normal-app"><a href="https://fundrepay.taobao.com/fund/sellerRemindList.htm" title="基金还款" data-spm="d95">基金还款</a></li> 
+          </ol> </li> 
+        </ul>
+       </div> 
+      </div>  -->
+     

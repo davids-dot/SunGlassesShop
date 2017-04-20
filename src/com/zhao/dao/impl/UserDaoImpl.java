@@ -1,9 +1,10 @@
-package com.zhao.dao;
+package com.zhao.dao.impl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zhao.dao.UserDao;
 import com.zhao.entity.Customer;
 import com.zhao.entity.User;
 import com.zhao.util.BeanListHandler;
@@ -64,8 +65,13 @@ public class UserDaoImpl implements UserDao {
 		}
 
 		return null;
-
 	}
+
+	// public User findUser(User user){
+	//
+	// String sql ="select * from user where "
+	//
+	// }
 
 	@Override
 	public boolean existUser(User user) {

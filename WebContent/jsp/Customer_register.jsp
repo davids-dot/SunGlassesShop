@@ -7,19 +7,19 @@
   <meta http-equiv="Chche" content="no-chche" /> 
   <meta http-equiv="Expires" content="-1" /> 
   <meta http-equiv="Pragma" content="no-cache" /> 
-  <title>明宇眼镜注册</title> 
-  <link type="text/css" rel="stylesheet" href="css/register.css" /> 
-  <script type="text/javascript" src="js/jquery-3.1.1.js"></script> 
-  <script type="text/javascript" src="js/jquery.validate.min.js"></script> 
-  <script type="text/javascript" src="js/messages_cn.js"></script> 
+  <title>明宇顾客注册</title> 
+  <link type="text/css" rel="stylesheet" href="../css/register.css" /> 
+  <script type="text/javascript" src="../js/jquery-3.1.1.js"></script> 
+  <script type="text/javascript" src="../js/jquery.validate.min.js"></script> 
+  <script type="text/javascript" src="../js/messages_cn.js"></script> 
   <script>
-       document.write('<script type="text/javascript" src="js/register.js?'+new Date().getTime()+'"><\/script>'); 
+       document.write('<script type="text/javascript" src="../js/register.js?'+new Date().getTime()+'"><\/script>'); 
   </script>
  </head> 
  <body> 
   <header> 
    <div class="logo"> 
-    <img src="images/logo.png" /> 
+    <img src="../images/logo.png" /> 
    </div> 
   </header> 
   
