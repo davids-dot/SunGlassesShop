@@ -36,20 +36,21 @@
 
 										<form action="/SunGlassesShop/LoginServlet" method="post">
 										<div class="input_line">
-										    用户名<input type="text" name="user_name" id="user_name" placeholder="请输入用户名" required></input>
+										    用户名<input type="text" name="user_name" id="user_name" value="${param.user_name }" placeholder="请输入用户名" required></input>
 
 										 </div>
 
 										<div class="input_line" >
-											密码&nbsp;&nbsp;&nbsp;<input type="text" name="pass_word" id="password" placeholder="密码" required></input>
+											密码&nbsp;&nbsp;&nbsp;<input type="password" name="pass_word" value="${param.pass_word}" id="password" placeholder="密码" required></input>
 										</div>
+										
 										
 										
 										<div class="input_line" >
 										<span style="position:relative;left:-25px;">验证码</span>  <input type="text" name="verify_Code" id="verifyCode" placeholder="验证码"
 											  style="width:100px;margin-left:-21px;" pattern="[\u4e00-\u9fa5]{4}"  required></input>
 											  <img src="/SunGlassesShop/VerifyImageServlet" onclick="changeVerifyImage(this)" 
-											  style="display:inline-block;vertical-align:middle;" />
+											  style="display:inline-block;vertical-align:middle;" width="122" height="32" />
 										</div>
 										
 										<div  class="error">${errors.error1}</div>
@@ -71,7 +72,7 @@
 										 		<div id="return_homepage">
 												<a class="choice_left" href="" >先去逛逛</a>
 												</div>
-												<a class="choice_right"  id="register" href="#"> 快速注册</a>
+												<a class="choice_right"  id="register" href="${pageContext.servletContext.contextPath}/jsp/Customer_register.jsp"> 快速注册</a>
 										</div>
 
 

@@ -49,7 +49,7 @@
 										<span style="position:relative;left:-25px;">验证码</span>  <input type="text" name="verify_Code" id="verifyCode" placeholder="验证码"
 											  style="width:100px;margin-left:-21px;" pattern="[\u4e00-\u9fa5]{4}"  required   value="${param.verify_Code}"/>
 											  <img src="/SunGlassesShop/VerifyImageServlet" onclick="changeVerifyImage(this)" 
-											  style="display:inline-block;vertical-align:middle;" />
+											  style="display:inline-block;vertical-align:middle;" width="122" height="32"/>
 										</div>
 										<div  class="error">${errors.error1}</div>
 										<div class="error">${errors.error2}</div>

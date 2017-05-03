@@ -13,9 +13,11 @@
 
 	<% int in =3; 
 	  request.setAttribute("hi", in);
-	
+	  request.setAttribute("hello", "helllllllll"); 
 	%>
 	${hi}
+	
+	${hello}
 	<c:if test="${hi==3}">
 	  <h1>去得了3</h1>
 	</c:if>

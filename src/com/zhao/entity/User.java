@@ -14,6 +14,28 @@ public class User {
 
 	}
 
+	@Deprecated
+	public static User getInstance(String type) {
+		if (type.equals("Customer")) {
+			return new Customer();
+		}
+		if (type.equals("Seller")) {
+			return new Seller();
+		}
+		if (type.equals("Admin")) {
+			;
+		}
+		return null;
+	}
+
+	public User(User user) {
+		this.name = user.name;
+		this.password = user.password;
+		this.telephone = user.telephone;
+		this.type = user.type;
+		this.isDele = user.isDele;
+	}
+
 	public User(String name2, String password2, String mobilePhone, String userType) {
 		this.name = name2;
 		this.password = password2;

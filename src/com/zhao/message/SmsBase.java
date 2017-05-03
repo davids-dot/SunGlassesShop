@@ -29,6 +29,7 @@ public class SmsBase {
 
 	}
 
+	// 单例模式
 	public static SmsBase getSms() {
 		return sms;
 	}

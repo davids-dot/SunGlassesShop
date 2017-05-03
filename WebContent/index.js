@@ -33,7 +33,7 @@
 					var list=document.getElementsByClassName("list")[0];
 
 					var buttons =document.getElementsByClassName("focus_button");
-					var container =document.getElementsByClassName("container")[0];
+					var container =document.getElementsByClassName("containe")[0];
 					var interval;
 					var focus_width=parseInt(container.offsetWidth);
 					

@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import com.zhao.dao.impl.SellerDaoImpl;
 import com.zhao.entity.Seller;
+import com.zhao.service.SellerService;
+import com.zhao.service.impl.SellerServiceImpl;
 
 public class SellerTest {
 
@@ -29,8 +31,13 @@ public class SellerTest {
 
 	}
 
-	public void testSellerDao() {
-		SellerDaoImpl sdao = new SellerDaoImpl();
+	@Test
+	public void testSellerService() {
+		SellerService ss = new SellerServiceImpl();
+		Seller sel = new Seller();
+		sel.setName("00000111");
+		Integer status = ss.ensureStatus(sel);
+		System.out.println(status);
 	}
 
 }

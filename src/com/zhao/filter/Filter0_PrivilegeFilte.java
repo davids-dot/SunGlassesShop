@@ -17,12 +17,12 @@ import javax.servlet.http.HttpSession;
  * 
  * urlPatterns 必须以 / 开头，否则Tomcat 启动不了
  */
-@WebFilter(filterName = "/Filter0_PrivilegeFilter", urlPatterns = { "/html/Seller_manage.html" })
+@WebFilter(filterName = "/Filter0_PrivilegeFilter", urlPatterns = { "/html/Seller_manage.html", "/CartServlet",
+		"/BussinessServlet" })
 public class Filter0_PrivilegeFilte implements Filter {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -44,15 +44,22 @@ public class Filter0_PrivilegeFilte implements Filter {
 
 			chain.doFilter(req, res);
 
-		} catch (Exception e) {
-			res.sendError(403, "您无权访问该资源");
+		} catch (NoPrivilegeException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			req.setAttribute("code", "error");
+			req.setAttribute("msg", "请先登录再操作");
+
+			// 一般是顾客未登录，如此设置为顾客登录地址
+			req.setAttribute("login", req.getServletContext().getContextPath() + "/login.jsp");
+			req.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
+
 		}
 
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
 
 	}
 

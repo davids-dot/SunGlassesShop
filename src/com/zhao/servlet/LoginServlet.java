@@ -9,11 +9,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.zhao.entity.Customer;
+import com.zhao.entity.Seller;
 import com.zhao.entity.User;
 import com.zhao.exception.IllegalException;
 import com.zhao.service.LoginRegisterService;
+import com.zhao.service.SellerService;
 import com.zhao.service.impl.LoginRegisterServiceImpl;
+import com.zhao.service.impl.SellerServiceImpl;
 import com.zhao.util.ServletUtil;
 
 /**
@@ -70,11 +75,17 @@ public class LoginServlet extends HttpServlet {
 
 	}
 
+	/*
+	 * 
+	 * 登录成功，将user 记录在 session 中，如果是卖家，记录状态
+	 */
 	private void successLogin(HttpServletRequest request, HttpServletResponse response, Map<String, String> map) {
 		User user = new User();
+		user.setType(map.get("type"));
 		user.setName(map.get("user_name"));
 		user.setType(map.get("type"));
-		request.getSession(false).setAttribute("user", user);
+
+		ServletUtil.LoginInSession(user, request);
 
 		try {
 			if (user.getType().equals("Customer")) {
@@ -83,7 +94,13 @@ public class LoginServlet extends HttpServlet {
 			}
 
 			else {
-				response.sendRedirect(request.getServletContext().getContextPath() + "/html/Seller_manage.html");
+
+				SellerService ss = new SellerServiceImpl();
+				HttpSession session = request.getSession(false);
+				Seller sel = (Seller) session.getAttribute("user");
+				Integer status = ss.ensureStatus(sel);
+				session.setAttribute("status", status);
+				response.sendRedirect(request.getServletContext().getContextPath() + "/jsp/SellerManage.jsp");
 			}
 
 		} catch (IOException e) {

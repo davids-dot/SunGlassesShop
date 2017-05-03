@@ -26,7 +26,7 @@
             username="root"
             password="1234"
             driverClassName="com.mysql.jdbc.Driver"
-            url ="jdbc:mysql://localhost:3306/sun?characterEncoding=UTF-8"
+            url ="jdbc:mysql://localhost:3306/sun?characterEncoding=utf8"
             maxTotal="8"
             maxIdle="4"/>
 

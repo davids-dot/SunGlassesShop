@@ -21,7 +21,6 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
 import com.zhao.util.DBUtil;
-import com.zhao.util.ListHandler;
 import com.zhao.util.MapResultHandler;
 
 /**

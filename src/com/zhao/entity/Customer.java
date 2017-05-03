@@ -7,11 +7,31 @@ public class Customer extends User {
 	private String address;
 	private String id_card;
 
-	public Integer getId() {
+	public Customer(User user) {
+		super(user);
+		this.name = super.getName();
+	}
+
+	public Customer() {
+
+	}
+
+	/*
+	 * 在原customer 上添加 customer 的新属性
+	 */
+	public Customer addAttribute(Customer cus) {
+		this.setName(cus.getName());
+		this.setAddress(cus.getAddress());
+		this.setId_card(cus.getId_card());
+		this.setCustomer_id(cus.getCustomer_id());
+		return this;
+	}
+
+	public Integer getCustomer_id() {
 		return customer_id;
 	}
 
-	public void setId(Integer id) {
+	public void setCustomer_id(Integer id) {
 		this.customer_id = id;
 	}
 
@@ -20,11 +40,12 @@ public class Customer extends User {
 	}
 
 	public void setName(String name) {
+		super.setName(name);
 		this.name = name;
 	}
 
 	public String toString() {
-		return "姓名：" + name + "\n" + "密码：" + getPassword() + "\n" + "电话：" + getTelephone() + "\n";
+		return "姓名：" + name + "\n" + "密码：" + getPassword() + "\n" + "电话：" + getTelephone() + "\n" + super.toString();
 	}
 
 	public static void main(String[] args) {

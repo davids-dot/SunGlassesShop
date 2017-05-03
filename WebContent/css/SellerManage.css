@@ -1,0 +1,197 @@
+@CHARSET "UTF-8";
+
+
+		html,body,h1,h2,h3,h4,h5,h6,form,div,img,ul{
+						margin:0;
+						padding:0;
+		}
+		a{
+			text-decoration: none;
+		}
+
+		.seller-nav{
+			height:35px;
+			background-color: #f6f6f6;
+		}
+
+		header{
+			margin:40px auto 0;
+			width:88%;
+		}
+
+		.top_nav{
+			height:50px;
+			margin:40px 0 23px;
+			background-color: #0085D7;
+		}
+
+		li{
+			list-style-type:none;
+			display:inline-block;
+		}
+
+
+		.page{
+			width:88%;
+			margin:0 auto;
+		}
+
+		.content{
+			overflow:hidden;
+		}
+
+
+
+		.content-sub{
+                 float: left;
+                 min-height: 200px;
+                 width:18%;
+                 border: 1px solid #E0E0E0;
+    			 border-radius: 2px;
+    			 background-color: #fff;
+		}
+
+		.content-main{
+			float:right;
+			margin-right:10px;
+			width:75%;
+			min-height: 900px;
+            border: 1px solid #d6e5f4;
+            margin-bottom: 20px;
+            padding: 25px;
+            color: #666;
+
+		}
+
+		.manage-title{
+
+			height: 42px;
+			line-height: 42px;
+			padding-left: 15px;
+			background-color: #f5f5f5;
+		}
+
+		.manage{
+			padding:5px;
+		}
+
+		.type-name{
+			height:30px;
+			line-height:30px;
+		}
+		
+		span.manage-icon{
+			display: inline-block;
+			width:30px;
+			height:25px;
+			vertical-align: text-top;/* 把元素的顶端与父元素字体的顶端对齐*/
+		
+		}
+		/***********         此处的 verticl-align    *************/
+
+		.type-name .name{
+			color:#333;
+			font-size:14px;
+			font-weight: bold;
+		}
+
+		.toggle{
+			display:inline-block;
+			width:20px;
+			height:20px;
+			background:url(../images/toggle.PNG) no-repeat;
+			vertical-align: middle;
+			margin-left:55px;
+		}
+
+		.manage-detail-ls{
+			padding:0 5px 10px;
+		}
+
+		.manage-detail{
+				width:45%;
+				font-size:12px;
+				
+		}
+		.manage-detail a {
+			color:#666;
+		}
+
+
+
+
+
+	
+
+		/************箭头相关***********/
+
+
+
+		.arrows{
+		  padding-left:20px;
+		   height:84px;
+		}
+
+	 .arrow,.last-arrow{
+        width:27%;
+        height:80px;
+        float:left;
+        background-color: #f2f3f7;
+      }
+
+
+    .real-arrow{
+	  content:"";
+	  float:left;
+      border:24px solid;
+      border-top-width: 40px;
+      border-bottom-width: 40px;
+      border-color: transparent transparent transparent #f2f3f7;
+     
+    }
+
+  
+    .step-num{
+    	width:30px;
+    	float:left;
+    	height:80px;
+    	margin-left:10px;
+    	line-height: 80px;
+    	color:black;
+    	font-size:40px;
+    }
+    .step-name,.step-desc{
+    	width:78%;
+    	height:40px;
+    	float:right;
+    	line-height: 40px;
+    }
+
+    /*font : font-style || font-variant || font-weight || font-size || line-height || font-family*/
+    .step-name{
+    	font:14px/40px "Microsoft YaHei";
+    }
+    .step-desc{
+    	font:12px/40px "Microsoft YaHei";
+    }
+
+
+    .open-page{
+    	width:100%;
+    	border:1px solid #44A8D9;
+    	overflow:hidden;
+     }
+     
+     .icon1{
+     font-size:20px;
+     font-family:"微软雅黑";
+     }
+ 
+    
+
+		/************箭头相关***********/
+
+
+		
+
+	

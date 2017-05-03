@@ -5,11 +5,11 @@
 						padding:0;
 					}	
 
-				 header,footer,.content{
+				 header,footer,.mycontent{
 				 	width:88%;
 				 }
 
-				 .content{
+				 .mycontent{
 				 	margin:0 auto;
 				    background-color: red;
 				 }
@@ -232,13 +232,13 @@
 
 
 /*------------------------------------------------------焦点图相关样式  -----------------------------------------------------------*/
-                            .container,.container img{
+                            .containe,.containe img{
 				        		width:760px;
 				        		height:319px;
 				        	}
 
 
-				        	.container{
+				        	.containe{
 				        		position:absolute;
 				        		overflow: hidden;
 				        		left:290px;
@@ -288,7 +288,7 @@
 				        	}
 
 
-				        	.arrow{
+				        	.arro{
 				        		position:absolute;
 				        		top:150px;
 				        		line-height: 39px;
@@ -302,11 +302,11 @@
 				        		display: none;
 				        	}
 
-				        	.arrow:hover{
+				        	.arro:hover{
 				        		background-color:RGBA(0,0,0,0.7);
 				        	}
 
-				        	.container:hover .arrow{
+				        	.containe:hover .arro{
 				        			display: block;
 				        	}
 
@@ -319,7 +319,7 @@
 				        		right:5px;
 				        	}
 
-				        	.container a{
+				        	.containe a{
 				        		text-decoration: none;
 				     		}
 /*------------------------------------------------------焦点图相关样式  -----------------------------------------------------------*/

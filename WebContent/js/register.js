@@ -33,6 +33,8 @@
                 	
                 	function checkNull(){
                 		
+                		        if (false==$("#userRegister").validate().element("#mobile_phone")) return;
+                		        if (undefined==$("#userRegister").validate().element("#mobile_phone")) return;
                 
                             	reGetCode.style.display="block";
                             	canGet =true;
@@ -163,7 +165,9 @@
                 			},
                 			
                 			messages:{
-                				name:"不好，该用户名已被占用",
+                				name:{
+                					remote:"不好，该用户名已被占用",
+                				},
                                 mobilephone:{
                                     remote:"该手机已经注册过了"
                                 },

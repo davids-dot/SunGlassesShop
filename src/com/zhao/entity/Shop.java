@@ -3,6 +3,31 @@ package com.zhao.entity;
 public class Shop {
 
 	private Integer shop_id;
+	private String name;
+	private String logoURI;
+	private Integer seller_id;
+	private Integer verify;
+	private String verifyInfo;
+	private Integer priority;
+
+	public Shop() {
+
+	}
+
+	public String toString() {
+
+		String s = "shop_id:" + shop_id + "\name:" + name + "\nlogoURI:" + logoURI + "\nseller_id:" + seller_id
+				+ "\nverify:" + verify + "\nverifyInfo:" + verifyInfo;
+
+		return s;
+	}
+
+	public Shop(String name2, String verifyInfo, String logoURI2, Integer seller_id2) {
+		this.name = name2;
+		this.verifyInfo = verifyInfo;
+		this.logoURI = logoURI2;
+		this.seller_id = seller_id2;
+	}
 
 	public Integer getShop_id() {
 		return shop_id;
@@ -44,9 +69,20 @@ public class Shop {
 		this.verify = verify;
 	}
 
-	private String name;
-	private String logoURI;
-	private Integer seller_id;
-	private Integer verify;
+	public String getVerifyInfo() {
+		return verifyInfo;
+	}
+
+	public void setVerifyInfo(String verifyInfo) {
+		this.verifyInfo = verifyInfo;
+	}
+
+	public Integer getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Integer priority) {
+		this.priority = priority;
+	}
 
 }

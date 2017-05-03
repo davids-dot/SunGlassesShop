@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.zhao.dao.impl.UserDaoImpl;
 import com.zhao.entity.User;
 import com.zhao.service.VerifyService;
+import com.zhao.util.ServletUtil;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -87,8 +88,7 @@ public class RegisterServlet extends HttpServlet {
 		System.out.println("addUser Finished");
 		// 注册过后，该用户自动登录，将用户信息存入session
 
-		HttpSession session = request.getSession(false);
-		session.setAttribute("user", user);
+		ServletUtil.LoginInSession(user, request);
 
 	}
 

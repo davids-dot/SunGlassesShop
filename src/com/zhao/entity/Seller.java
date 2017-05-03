@@ -7,6 +7,7 @@ public class Seller extends User {
 	private String address;
 	private String photoURI;
 	private String realName;
+	private Shop shop;
 
 	public String toString() {
 		String s = super.toString() + "seller_id:" + seller_id + "\n" + "id_card:" + id_card + "\n" + "address:"
@@ -72,6 +73,18 @@ public class Seller extends User {
 		this.id_card = id_card2;
 		this.address = area;
 		this.photoURI = photoURI;
+	}
+
+	public Seller(User user) {
+		super(user);
+	}
+
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 
 }
