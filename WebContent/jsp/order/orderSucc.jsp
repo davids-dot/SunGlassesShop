@@ -33,7 +33,33 @@
 		<dd>${sessionScope.user.address}</dd>
 	</dl>
 	<span>明宇网上商城感谢您的支持，祝您购物愉快！</span>
-	<a href="<c:url value='/OrderServlet?method=paymentPre&oid=${order.order_id}'/>" id="linkPay">支付</a>
+	<a href="javascript:pay(${order.order_id })" id="linkPay">支付</a>
 </div>
   </body>
+  <script>
+  
+  function pay(id){
+		myPost('${pageContext.servletContext.contextPath}/BussinessServlet',{type:'pay',order_id:id});
+	}
+
+  
+  function   myPost(URL,Params){
+
+	  var temp = document.createElement("form");
+	      temp.action =URL;
+	      temp.method="post";
+	      temp.style.display ="none";
+	  
+	     for(var param in Params){
+			var opt =document.createElement("textarea");
+			opt.name = param;
+			opt.value  =Params[param];
+			temp.appendChild(opt);
+	     }
+	     document.body.appendChild(temp);
+	     temp.submit();
+	     return ;
+	}
+  
+  </script>
 </html>

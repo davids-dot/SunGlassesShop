@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  * urlPatterns 必须以 / 开头，否则Tomcat 启动不了
  */
 @WebFilter(filterName = "/Filter0_PrivilegeFilter", urlPatterns = { "/html/Seller_manage.html", "/CartServlet",
-		"/BussinessServlet" })
+		"/BussinessServlet", "/jsp/order/*", "/GoodsManageServlet" })
 public class Filter0_PrivilegeFilte implements Filter {
 
 	@Override
@@ -45,13 +45,19 @@ public class Filter0_PrivilegeFilte implements Filter {
 			chain.doFilter(req, res);
 
 		} catch (NoPrivilegeException e) {
-			e.printStackTrace();
 			System.out.println(e.getMessage());
+
 			req.setAttribute("code", "error");
 			req.setAttribute("msg", "请先登录再操作");
 
+			String requestURL = req.getRequestURL().toString();
+			if (requestURL.contains("GoodsManageServlet")) {
+				req.setAttribute("login", req.getServletContext().getContextPath() + "/SellerLogin.jsp");
+			}
 			// 一般是顾客未登录，如此设置为顾客登录地址
-			req.setAttribute("login", req.getServletContext().getContextPath() + "/login.jsp");
+			else {
+				req.setAttribute("login", req.getServletContext().getContextPath() + "/login.jsp");
+			}
 			req.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
 
 		}

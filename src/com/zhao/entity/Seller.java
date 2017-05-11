@@ -87,4 +87,12 @@ public class Seller extends User {
 		this.shop = shop;
 	}
 
+	public Seller addAttribute(Seller temp) {
+		this.setName(temp.getName());
+		this.setAddress(temp.getAddress());
+		this.setId_card(temp.getId_card());
+		this.setSeller_id(temp.getSeller_id());
+		return this;
+	}
+
 }

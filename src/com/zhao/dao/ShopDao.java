@@ -9,7 +9,7 @@ public interface ShopDao {
 
 	public void changeStatus(String name);
 
-	public Shop findShop(Integer integer);
+	public Shop findShop(Integer seller_id);
 
 	public boolean existGoods(Shop shop, Goods goods);
 

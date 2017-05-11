@@ -39,7 +39,7 @@ public class CustomerGoodsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 存到前台大量商品数据
+		// 分页商品数据
 
 		String goods_id = request.getParameter("goods_id");
 		if (goods_id == null) {

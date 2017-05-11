@@ -1,6 +1,8 @@
 package com.zhao.test;
 
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.junit.Test;
 
@@ -33,6 +35,14 @@ public class UtilTest {
 	}
 
 	@Test
+
+	public void testStringLength() {
+		String s = "order_id, customer_id,status";
+		System.out.println(s.length());
+
+	}
+
+	@Test
 	public void testResultSize() {
 		String sql2 = "select count(*) from goods where goods_id in(select goods_id from shop_has_goods where"
 				+ " shop_id = 3 )";
@@ -42,6 +52,20 @@ public class UtilTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Test
+	public void testRegExp() {
+		String s = "9&3,10&3,14&3";
+		Pattern pattern = Pattern.compile("([0-9]+)&([0-9]+)");
+		Matcher matcher = pattern.matcher(s);
+
+		while (matcher.find()) {
+
+			System.out.println(matcher.group(1));
+			System.out.println(matcher.group(2));
+		}
+
 	}
 
 }

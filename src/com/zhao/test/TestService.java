@@ -2,11 +2,16 @@ package com.zhao.test;
 
 import java.sql.Date;
 
+import javax.servlet.http.HttpServlet;
+
 import org.junit.Test;
 
 import com.zhao.dao.impl.GoodsDaoImpl;
 import com.zhao.entity.Cart;
 import com.zhao.entity.Goods;
+import com.zhao.entity.Order;
+import com.zhao.entity.PageBean;
+import com.zhao.entity.QueryInfo;
 import com.zhao.entity.Seller;
 import com.zhao.exception.NoAvailableGoodsException;
 import com.zhao.service.CustomerService;
@@ -59,6 +64,32 @@ public class TestService {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Test
+	public void testQuerySomeOrder() {
+		CustomerService cs = new CustomerServiceImpl();
+		QueryInfo queryInfo = new QueryInfo();
+		PageBean page = cs.querySomeOrders(3, queryInfo);
+		System.out.println(page.getList());
+	}
+
+	@Test
+	public void testOrderId() {
+
+		for (int i = 0; i < 100; i++) {
+			int o1 = (int) (Math.random() * 10);
+			int o2 = (int) (Math.random() * 10);
+			Long o3 = System.currentTimeMillis();
+			String odno = String.valueOf(o1) + String.valueOf(o2) + String.valueOf(o3);
+			System.out.println(odno);
+		}
+
+	}
+
+	@Test
+	public void testOteher() {
+		System.out.println(String.valueOf(0));
 	}
 
 }

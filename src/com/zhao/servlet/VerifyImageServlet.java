@@ -55,6 +55,8 @@ public class VerifyImageServlet extends HttpServlet {
 		response.setIntHeader("Expires", -1);
 
 		request.getSession().setAttribute("loginCode", loginCode);
+		request.getSession().setAttribute("loginCode", "啊啊啊啊");
+
 		ImageIO.write(image, "jpg", response.getOutputStream());
 	}
 

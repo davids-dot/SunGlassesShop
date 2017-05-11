@@ -9,6 +9,8 @@ public class CartItem {
 	/*
 	 * 数据库中还有 customer_id
 	 */
+	private Goods goods;
+	private Integer stock;// 库存数量
 
 	public CartItem() {
 
@@ -36,9 +38,6 @@ public class CartItem {
 				&& (shop_id == null ? other.getShop_id() == null : shop_id.equals(other.getShop_id()));
 
 	}
-
-	private Goods goods;
-	private Integer stock;// 库存数量
 
 	public Integer getGoods_id() {
 		return goods_id;

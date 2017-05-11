@@ -57,6 +57,115 @@ ul.page li a i{
 ul.page li a i.next {
 	background-position:-136px -54px;
 }
+
+
+.head-top{
+  padding:0 82px;
+}
+.head-top li{
+  
+    float:right;
+    padding:0 5px;
+}
+.head-top a{
+   
+   color:#fff;
+   text-decoration:underline;
+       vertical-align: -webkit-baseline-middle;
+     
+}
+
+
+.search_text {
+    width: 30%;
+    background-color: #90c31f;
+    text-align: center;
+}
+
+#search_main {
+    width: 80%;
+    margin-top: 15px;
+    height: 35px;
+    border: 1px solid white;
+    background: url(images/find.png) no-repeat right center;
+    background-color: white;
+    padding-right: 15px;
+}
+
+
+.shoppingCart {
+    margin-left: 100px;
+    background-color: #999999;
+}
+
+.cart {
+    vertical-align: middle;
+    margin: 10px;
+    background-color: #fff;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.icons {
+    height: 40px;
+    width: 20px;
+    background: url(images/toolbars.png) no-repeat 0 10px;
+    float: left;
+    margin: 0 5px;
+}
+
+.cart a {
+    display: block;
+    float: left;
+    text-decoration: none;
+    color: red;
+}
+
+#cart_num {
+    height: 15px;
+    width: 15px;
+    line-height: 12px;
+    margin: 8px 5px;
+    border-radius: 50%;
+    background-color: red;
+    float: left;
+    color: black;
+    font-size: 12px;
+}
+
+.login_register {
+    float: right;
+    width: 20%;
+    margin-right: 40px;
+    height: 60px;
+    background-color: #90c31f;
+}
+
+.login_pic {
+    width: 40px;
+    height: 50px;
+    margin: 5px 5px;
+    float: left;
+}
+
+.login_pic img {
+    height: 100%;
+    border-radius: 23px;
+}
+
+.login_register p {
+    margin: 8px 5px;
+    padding-left: 55px;
+    font: 14px Microsoft YaHei,tahoma;
+}
+
+.login_register a {
+    display: inline-block;
+    margin-right: 30px;
+    text-decoration: none;
+    color: #666;
+}
   
   </style>
 		
@@ -67,7 +176,15 @@ ul.page li a i.next {
 		<body>
 
 				<header>
-					<div class="header_pic"></div>
+					<div class="header_pic" style="width:114%;margin-left:-7%;background-color:#b7b1a0">
+							<ul class="head-top">
+							    <li><a href="${pageContext.servletContext.contextPath}/SellerLogin.jsp">我是商家</a></li>
+							    <li></li>
+							    <li></li>
+							    <li></li> 
+							</ul>
+					
+					</div>
 					<div class="header_main">
 
 							<div id="logo">
@@ -75,7 +192,7 @@ ul.page li a i.next {
 							</div>
 
 							<div class="search_text">
-									<input type="text"></input>
+									<input type="text" id="search_main"></input>
 							</div>
 
 							<div id="search_text_right">
@@ -83,14 +200,23 @@ ul.page li a i.next {
 							</div>
 
 
-							<div class="shoppingCart">
-									我的购物车
+					       <div class="shoppingCart">
+								<div class="cart">
+								<div class="icons"> </div>
+									<a id="cart_a" href="${pageContext.servletContext.contextPath}/CartServlet?type=showAll"> 我的购物车</a>
+									<div id="cart_num">0</div>
+								</div>
 							</div>
 
 
-							<div class="login_register">
-									欢迎来到明宇眼镜<br/>
-									登录   注册
+				<div class="login_register">
+									<div class="login_pic">
+										<img src="images/no_login.jpg" alt="no_login"/>
+									</div>
+									<p>欢迎来到明宇眼镜</p>
+
+									<p><a href="login.jsp">登录</a> 
+									<a href="SellerLogin.jsp">注册</a><p>
 							</div>
 					</div>
 				</header>
@@ -311,11 +437,11 @@ ul.page li a i.next {
 				 <div class="containe" >
 
 						<div class="list" style="left:0">
-							 <img src="images/girl1.jpg"  alt=""/>
-							 <img src="images/girl2.jpg"  alt=""/>
-							 <img src="images/girl3.jpg"  alt=""/>
-							 <img src="images/girl4.jpg"  alt=""/>
-							 <img src="images/girl5.jpg"  alt=""/>
+							 <img src="images/ad1.jpg"  alt=""/>
+							 <img src="images/ad2.jpg"  alt=""/>
+							 <img src="images/ad3.jpg"  alt=""/>
+							 <img src="images/ad4.jpg"  alt=""/>
+							 <img src="images/ad5.jpg"  alt=""/>
 				   			
 				   	    </div>
 
@@ -380,7 +506,7 @@ ul.page li a i.next {
 <script type="text/javascript" src="index.js"></script>
 <%--  这里决定显示商品    --%>
 
-<div class="container">
+<div class="container" style="width:88%;margin:0 auto; padding:0;" >
 			<div class="content">
 				<div class="content-top">
 					<h3 class="future">最新最热</h3>

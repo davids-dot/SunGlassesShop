@@ -106,7 +106,7 @@
 					<ul class="icon1 sub-icon1">
 							<li  ><a href="wishlist.html">我的收藏<span>(0)</span></a> </li>
 							<li  ><a href="account.html">我的账号</a></li>
-							<li  ><a href="${pageContext.servletContext.contextPath}/BussinessServlet?type=showAll">我的订单</a></li>
+							<li  ><a href="${pageContext.servletContext.contextPath}/BussinessServlet?type=showSome&cur=1&pSize=3 ">我的订单</a></li>
 							<li ><a href="${pageContext.servletContext.contextPath}/CartServlet?type=showAll" >我的购物车</a></li>
 							<li > <a href="checkout.html" >注销</a> </li>	
 							<li><div class="cart">
@@ -164,7 +164,7 @@
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
 					<li class="active"><a href="index.html"><i> </i>首页</a></li>
-					<li ><a href="#" >Laptops &amp; Notebooks</a>
+					<li ><a href="#" >什么 &amp; 什么</a>
 						<ul class="drop">
 							<li><a href="products.html">Sony(2)</a></li>
 							<li><a href="products.html">Android(4)</a></li>
@@ -188,7 +188,7 @@
 		<div class="container">
 		
 		<div class="header-bottom-on">
-			<p class="wel"><a href="#">欢迎光临，您可以现在登录或申请账号。</a></p>
+			<p class="wel"><a href="login.jsp">欢迎光临，您可以现在登录或申请账号。</a></p>
 			<div class="header-can">
 				<ul class="social-in">
 						<li><a href="#"><i> </i></a></li>

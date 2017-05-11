@@ -1,5 +1,6 @@
 package com.zhao.service.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -63,21 +64,6 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		GoodsDaoImpl gdao = new GoodsDaoImpl();
 		return gdao.find("goods_id", goods.getGoods_id());
-	}
-
-	@Override
-	public Order buyGoods(Integer goods_id, Integer customer_id) throws NoAvailableGoodsException {
-
-		CartItemFactory cf = new CartItemFactoryDefault();
-		CartItem cartItem = cf.createCartItem(goods_id);
-		DefinitizedGoods dgoods = new DefinitizedGoods(cartItem);
-		Order order = new Order(customer_id, Arrays.asList(dgoods));
-		//
-		OrderDao odao = new OrderDaoImpl();
-		odao.addOrder(order);
-
-		return order;
-
 	}
 
 	public Order buyGoods(Cart cart) {
@@ -162,6 +148,79 @@ public class CustomerServiceImpl implements CustomerService {
 		param.put("customer_id", customer_id);
 		return odao.queryOrders(param);
 
+	}
+
+	@Override
+	public Order buyGoods(Integer goods_id, Integer customer_id) throws NoAvailableGoodsException {
+
+		CartItemFactory cf = new CartItemFactoryDefault();
+		CartItem cartItem = cf.createCartItem(goods_id);
+		DefinitizedGoods dgoods = new DefinitizedGoods(cartItem);
+		Order order = new Order(customer_id, Arrays.asList(dgoods));
+		//
+		OrderDao odao = new OrderDaoImpl();
+		odao.addOrder(order);
+
+		return order;
+
+	}
+
+	@Override
+	public Order buyGoods(ArrayList<CartItem> items, Integer custoemr_id) {
+
+		Order order = new Order(custoemr_id, items);
+
+		OrderDao odao = new OrderDaoImpl();
+		odao.addOrder(order);
+
+		return order;
+	}
+
+	@Override
+	public Order pay(Long order_id) {
+
+		OrderDao odao = new OrderDaoImpl();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("order_id", order_id);
+		List<Order> orders = odao.queryOrders(map);
+		if (orders.size() != 1) {
+			System.out.println("严重错误");
+		}
+
+		return orders.get(0);
+
+	}
+
+	@Override
+	public void payConfirm(Long order_id) {
+
+		OrderDao odao = new OrderDaoImpl();
+		odao.changeOrderStatus(order_id, 1);
+		return;
+	}
+
+	@Override
+	public PageBean querySomeOrders(Integer customer_id, QueryInfo queryInfo) {
+
+		OrderDao odao = new OrderDaoImpl();
+
+		QueryResult qr = odao.querySomeOrders(customer_id, queryInfo.getStartIndex(), queryInfo.getPageSize());
+		PageBean page = new PageBean(queryInfo.getCurrentPage(), queryInfo.getPageSize(), qr.getTotalRecords());
+		page.setList(qr.getList());
+
+		return page;
+
+	}
+
+	@Override
+	public PageBean querySomeOrders(Map<String, Object> queryParam, QueryInfo queryInfo) {
+		OrderDao odao = new OrderDaoImpl();
+
+		QueryResult qr = odao.querySomeOrders(queryParam, queryInfo.getStartIndex(), queryInfo.getPageSize());
+		PageBean page = new PageBean(queryInfo.getCurrentPage(), queryInfo.getPageSize(), qr.getTotalRecords());
+		page.setList(qr.getList());
+
+		return page;
 	}
 
 }

@@ -10,11 +10,16 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 import com.zhao.dao.OrderDao;
+import com.zhao.entity.Goods;
 import com.zhao.entity.Order;
 import com.zhao.entity.OrderDetail;
+import com.zhao.entity.QueryInfo;
+import com.zhao.entity.QueryResult;
+import com.zhao.servlet.OrderType;
 import com.zhao.util.BeanListHandler;
 import com.zhao.util.DBUtil2;
 import com.zhao.util.IsNullHandler;
+import com.zhao.util.ResultSizeHandler;
 
 /*
  * create table Orders(
@@ -144,6 +149,105 @@ public class OrderDaoImpl implements OrderDao {
 		}
 
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public QueryResult querySomeOrders(Integer customer_id, int startIndex, int pageSize) {
+
+		QueryResult qr = new QueryResult();
+
+		try {
+
+			String sql = "select order_id, customer_id,status from orders where 1=1 and customer_id = ? limit ?,? ";
+
+			qr.setList((List<Order>) DBUtil2.executeQuery(sql, Arrays.asList(customer_id, startIndex, pageSize),
+					new BeanListHandler<Order>(Order.class)));
+
+			String sql2 = "select count(*) from orders where 1=1 and customer_id = ? ";
+
+			Integer totalRecords;
+
+			totalRecords = (Integer) DBUtil2.executeQuery(sql2, Arrays.asList(customer_id), new ResultSizeHandler());
+			qr.setTotalRecords(totalRecords);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return qr;
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public QueryResult querySomeOrders(Map<String, Object> queryParam, int startIndex, int pageSize) {
+		QueryResult qr = new QueryResult();
+
+		try {
+
+			StringBuilder sb = new StringBuilder();
+			sb.append("select order_id, customer_id,status from orders where 1=1  ");
+			List<Object> param = new ArrayList<Object>();
+			for (Entry<String, Object> entry : queryParam.entrySet()) {
+				sb.append(" and " + entry.getKey() + " =  ? ");
+				param.add(entry.getValue());
+			}
+			sb.append(" limit ? , ? ");
+			param.add(startIndex);
+			param.add(pageSize);
+
+			qr.setList(
+					(List<Order>) DBUtil2.executeQuery(sb.toString(), param, new BeanListHandler<Order>(Order.class)));
+
+			int start = sb.indexOf("order_id");
+			sb.replace(start, start + 28, "count(*)");
+
+			Integer totalRecords;
+			param.remove(param.size() - 1);
+			param.remove(param.size() - 1);
+
+			sb.delete(sb.indexOf("limit"), sb.length());
+
+			totalRecords = (Integer) DBUtil2.executeQuery(sb.toString(), param, new ResultSizeHandler());
+			qr.setTotalRecords(totalRecords);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return qr;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public QueryResult querySellerOrder(OrderType type, Integer shop_id, QueryInfo queryInfo) {
+		QueryResult qr = new QueryResult();
+
+		try {
+
+			String sql = "select distinct (Orders.order_id), customer_id,status from Orders,Order_detail "
+					+ " where Orders.order_id = Order_detail.order_id " + " and shop_id = ? and status = ? limit ? , ?";
+
+			qr.setList((List<Order>) DBUtil2.executeQuery(sql,
+					Arrays.asList(shop_id, type.ordinal(), queryInfo.getStartIndex(), queryInfo.getPageSize()),
+					new BeanListHandler<Order>(Order.class)));
+
+			String sql2 = "select count(distinct Orders.order_id) from Orders,Order_detail where Orders.order_id = Order_detail.order_id "
+					+ " and shop_id = ? and status = ? ";
+
+			Integer totalRecords;
+
+			totalRecords = (Integer) DBUtil2.executeQuery(sql2, Arrays.asList(shop_id, type.ordinal()),
+					new ResultSizeHandler());
+			qr.setTotalRecords(totalRecords);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return qr;
+
 	}
 
 }

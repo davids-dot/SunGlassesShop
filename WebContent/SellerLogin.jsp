@@ -34,7 +34,7 @@
 
 								<div id="text_input">
 
-										<form action="/SunGlassesShop/LoginServlet" method="post">
+										<form action="/SunGlassesShop/LoginServlet" method="post" style="padding-bottom:20px;">
 										<div class="input_line">
 										    用户名<input type="text" name="user_name" id="user_name" placeholder="请输入用户名" required value="${param.user_name}" />
 
@@ -62,11 +62,17 @@
 												<a class="choice_right" id="forget_password" href="#"> 忘记密码</a>
 										</div>
 										
+										
+										
+										
 
 										<input type="hidden" name="type" value="Seller" />
 										 <input type ="submit" id="login_button" name="login_button" value="登       录" style="margin-bottom:30px;"></input> 
 
-
+										<div class="other_choice" pos="bottom" style="margin-top:0;">
+										
+												<a class="choice_right"  id="register" href="${pageContext.servletContext.contextPath}/jsp/Seller_register.jsp"> 快速注册</a>
+										</div>
 
 										
 

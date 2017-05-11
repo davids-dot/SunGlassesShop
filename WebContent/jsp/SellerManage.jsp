@@ -6,9 +6,12 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>商户中心</title>
-		<link href="../css/SellerManage.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
 		
+	
+		    		<link href="${pageContext.servletContext.contextPath}/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="${pageContext.servletContext.contextPath}/css/SellerManage.css" rel="stylesheet" type="text/css" />
+	<link href="${pageContext.servletContext.contextPath}/css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="text/javascript" src="${pageContext.servletContext.contextPath}/js/jquery-3.1.1.js"></script>
 
 
 		
@@ -22,7 +25,7 @@
 				
 				<div class="top_nav">
 					<ul>
-						<li>首页</li>
+						<li><a href="${pageContext.servletContext.contextPath}">首页</a></li>
 						<li>首页</li>
 						<li>首页</li>
 						<li>首页</li>
@@ -34,7 +37,7 @@
 
 					<div class="page"> 
 					   <div class="content"> 
-					    <div class="content-main">
+					    <div class="content-main" id="contentMain">
 					    	<h1>免费开店</h1>
 					    	<p>申请淘宝店铺完全免费; 一个身份只能开一家店; 开店后店铺无法注销; 申请到正式开通预计需1~3个工作日。</p>
 	
@@ -44,7 +47,7 @@
 					     <div class="arrow">
 					     	<div class="step-num">1</div>
 					        <div class="step-name">阅读开店须知</div>
-					        <div class="step-desc">确认自己符合经营店铺的相关规定</div>
+					        <div class="step-desc">确认符合经营店铺的相关规定</div>
 					     </div>
 						  <div class="real-arrow"></div>
 					     <div class="arrow">
@@ -67,7 +70,7 @@
 						 <iframe name="open-page" class="open-page" id="open-page" 
 						 >
 						 	 </iframe>
-						 
+				   </div> <!--content-main 结束--> 
 						   <script >
 				            function direction(){
 				            	
@@ -83,79 +86,14 @@
 						 	
 
              
-					
-
- 
 
 
-
-
-					    </div> <!--content-main 结束-->
+					    
 
 
 
 					    <div class="content-sub"> 
-					     <div class="manage-title">
-					      我的事务
-					     </div> 
-					     <ul class="manage"> 
-					      <li class="manageType"> 
-					       <div class="type-name"> 
-					        <span class="manage-icon" style="background:url(../images/shop.PNG) no-repeat ;"> </span> 
-					        <span class="name">店铺管理</span> 
-					        <span class="toggle"></span> 
-					       </div> 
-					       <ul class="manage-detail-ls"> 
-					        <li class="manage-detail"> <a href="#">我要开店</a> </li> 
-					        <li class="manage-detail"> <a href="#">状态查询</a> </li> 
-					        <li class="manage-detail"> <a href="#">我要开店</a> </li> 
-					       </ul> </li> 
-					      <li class="manageType"> 
-					       <div class="type-name"> 
-					        <span class="manage-icon" style="background:url(../images/trading.PNG) no-repeat ;"> </span> 
-					        <span class="name">交易管理</span> 
-					        <span class="toggle"></span> 
-					       </div> 
-					       <ul class="manage-detail-ls"> 
-					        <li class="manage-detail"> <a href="#">我要开店</a> </li> 
-					        <li class="manage-detail"> <a href="#">状态查询</a> </li> 
-					        <li class="manage-detail"> <a href="#">我要开店</a> </li> 
-					       </ul> </li> 
-					      <li class="manageType"> 
-					       <div class="type-name"> 
-					        <span class="manage-icon" style="background:url(../images/goods.PNG) no-repeat ;"> </span> 
-					        <span class="name">宝贝管理</span> 
-					        <span class="toggle"></span> 
-					       </div> 
-					       <ul class="manage-detail-ls"> 
-					        <li class="manage-detail"> <a  href="/SunGlassesShop/jsp/addGoods.jsp?h=1" >添加宝贝</a> </li> 
-					        <li class="manage-detail"> <a href="/SunGlassesShop/jsp/addGoods.jsp?h=2">宝贝下架</a> </li> 
-					        <li class="manage-detail"> <a href="/SunGlassesShop/jsp/addGoods.jsp?h=3">宝贝内容更新</a></li> 
-					       </ul> </li> 
-					    
-					      <li class="manageType"> 
-					       <div class="type-name"> 
-					        <span class="manage-icon" style="background:url(../images/logistics.PNG) no-repeat ;"> </span> 
-					        <span class="name">物流管理</span> 
-					        <span class="toggle"></span> 
-					       </div> 
-					       <ul class="manage-detail-ls"> 
-					        <li class="manage-detail"> <a href="#">我要开店</a> </li> 
-					        <li class="manage-detail"> <a href="#">我要开店</a> </li> 
-					        <li class="manage-detail"> <a href="#">我要开店</a> </li> 
-					       </ul> </li> 
-					      <li class="manageType"> 
-					       <div class="type-name"> 
-					        <span class="manage-icon" style="background:url(../images/service.PNG) no-repeat ;"> </span> 
-					        <span class="name">客户服务</span> 
-					        <span class="toggle"></span> 
-					       </div> 
-					       <ul class="manage-detail-ls"> 
-					        <li class="manage-detail"> <a href="#">我要开店</a> </li> 
-					        <li class="manage-detail"> <a href="#">我要开店</a> </li> 
-					        <li class="manage-detail"> <a href="#">我要开店</a> </li> 
-					       </ul> </li> 
-					     </ul> 
+					   <%@ include file="content-sub.jsp"%>
 					    </div> <!--content-sub,即左侧导航结束-->
 					   </div> 
 					  </div>

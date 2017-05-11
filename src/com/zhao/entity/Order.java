@@ -1,13 +1,18 @@
 package com.zhao.entity;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.zhao.dao.impl.CustomerDaoImpl;
 import com.zhao.dao.impl.GoodsDaoImpl;
+import com.zhao.util.BeanListHandler;
+import com.zhao.util.DBUtil2;
 
 public class Order {
 
@@ -15,6 +20,8 @@ public class Order {
 	private Integer customer_id;
 	private Integer status;
 	private List<OrderDetail> items;
+
+	private String customerName;
 
 	public Order() {
 
@@ -31,6 +38,22 @@ public class Order {
 			DefinitizedGoods dg = it.next();
 			// OrderDetail(goods_id,shop_id,num) //dg.shop_id 赋值错误
 			items.add(new OrderDetail(dg.getGoods_id(), dg.getShop_id(), 1));
+		}
+
+		createOrder_id();
+
+	}
+
+	public Order(Integer customer_id, ArrayList<CartItem> cartItems) {
+		this.customer_id = customer_id;
+		this.status = 0;
+		items = new ArrayList<OrderDetail>();
+
+		Iterator<CartItem> it = cartItems.iterator();
+		while (it.hasNext()) {
+			CartItem cartItem = it.next();
+			// OrderDetail(goods_id,shop_id,num) //dg.shop_id 赋值错误
+			items.add(new OrderDetail(cartItem.getGoods_id(), cartItem.getShop_id(), cartItem.getNum()));
 		}
 
 		createOrder_id();
@@ -61,7 +84,21 @@ public class Order {
 		this.customer_id = customer_id;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<OrderDetail> getItems() {
+		if (items != null)
+			return items;
+
+		try {
+			String sql = "select goods_id,shop_id,num from Order_detail where order_id = ? ";
+
+			setItems((List<OrderDetail>) DBUtil2.executeQuery(sql, Arrays.asList(getOrder_id()),
+					new BeanListHandler<OrderDetail>(OrderDetail.class)));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		return items;
 	}
 
@@ -79,12 +116,12 @@ public class Order {
 
 	public Double getTotalPrice() {
 
-		Iterator<OrderDetail> it = items.iterator();
+		Iterator<OrderDetail> it = getItems().iterator();
 		BigDecimal bd = new BigDecimal(0);
 
 		while (it.hasNext()) {
 			OrderDetail od = it.next();
-			bd = bd.add(new BigDecimal(od.getGoods().getPrice()));
+			bd = bd.add(new BigDecimal(od.getGoods().getPrice() * od.getNum()));
 		}
 
 		return bd.doubleValue();
@@ -95,6 +132,14 @@ public class Order {
 		if (items == null)
 			return s;
 		return s + items.toString();
+	}
+
+	public String getCustomerName() {
+		if (customerName != null)
+			return customerName;
+		CustomerDaoImpl cdao = new CustomerDaoImpl();
+		this.customerName = cdao.find("customer_id", this.getCustomer_id()).getName();
+		return customerName;
 	}
 
 }

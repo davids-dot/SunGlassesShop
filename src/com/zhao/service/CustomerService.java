@@ -1,8 +1,11 @@
 package com.zhao.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.zhao.entity.Cart;
+import com.zhao.entity.CartItem;
 import com.zhao.entity.Customer;
 import com.zhao.entity.Goods;
 import com.zhao.entity.Order;
@@ -33,5 +36,15 @@ public interface CustomerService {
 
 	public Order buyGoods(Cart cart);
 
+	public Order buyGoods(ArrayList<CartItem> items, Integer custoemr_id);
+
 	public List<Order> queryOrders(Integer customer_id);
+
+	public Order pay(Long order_id);
+
+	public void payConfirm(Long order_id);
+
+	public PageBean querySomeOrders(Integer customer_id, QueryInfo queryInfo);
+
+	public PageBean querySomeOrders(Map<String, Object> queryParam, QueryInfo request2QueryInfo);
 }

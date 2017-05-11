@@ -32,5 +32,12 @@
         <function-class>com.zhao.util.ELUtil</function-class>
         <function-signature>java.lang.String mapToServer( java.lang.String )</function-signature>
     </function>
+    
+     <function>
+        <description>把订单号转成日期</description>
+        <name>realDate</name>
+        <function-class>com.zhao.util.ELUtil</function-class>
+        <function-signature>java.lang.String realDate( java.lang.Long )</function-signature>
+    </function>
 </taglib>
     

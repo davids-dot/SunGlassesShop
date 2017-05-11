@@ -29,8 +29,11 @@ import com.zhao.entity.Customer;
 import com.zhao.entity.DefinitizedGoods;
 import com.zhao.entity.Goods;
 import com.zhao.entity.Order;
+import com.zhao.entity.QueryInfo;
+import com.zhao.entity.QueryResult;
 import com.zhao.entity.Shop;
 import com.zhao.exception.NoAvailableGoodsException;
+import com.zhao.servlet.OrderType;
 
 public class TestDao {
 
@@ -112,8 +115,9 @@ public class TestDao {
 	public void testOrderDao() {
 		OrderDao odao = new OrderDaoImpl();
 		//
-		Order order = new Order(2, Arrays.asList(new DefinitizedGoods(2, 3), new DefinitizedGoods(5, 3)));
-		odao.addOrder(order);
+
+		QueryResult qr = odao.querySellerOrder(OrderType.NEW, 3, new QueryInfo());
+		System.out.println(qr);
 	}
 
 	@Test

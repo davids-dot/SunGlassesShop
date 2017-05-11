@@ -99,7 +99,7 @@
       	  明宇眼镜，你忠实的合作伙伴。 </p>
         <p>如果您有什么疑问可以联系管理员，Email: DavidSta@qq.com。</p> 
         <p>在{<span id="countDown"></span>}秒内会前往开店页面，如果未能跳转，请点击以下链接<br/>  </p>
-         <p>	<a href="/SunGlassesShop/html/Seller_manage.html">http:localhost:9080/SunGlassesShop</a></p>
+         <p>	<a href="/SunGlassesShop/jsp/SellerManage.jsp">http:localhost:9080/SunGlassesShop</a></p>
       					</div>
 						<div class="notice_footer">
 							 <p align="right">明宇 官方团队</p> 

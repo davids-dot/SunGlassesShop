@@ -19,6 +19,7 @@ import com.zhao.entity.Seller;
 import com.zhao.entity.User;
 import com.zhao.exception.IllegalException;
 import com.zhao.service.CustomerService;
+import com.zhao.service.SellerService;
 import com.zhao.service.impl.CustomerServiceImpl;
 
 public class ServletUtil {
@@ -108,14 +109,25 @@ public class ServletUtil {
 
 	}
 
-	public static Customer checkCustomerInSession(CustomerService cs, HttpServletRequest request, HttpSession session) {
+	public static Customer checkCustomerInSession(CustomerService cs, HttpSession session) {
 
 		Customer cus = (Customer) session.getAttribute("user");
 		if (cus.getCustomer_id() == null) {
 			Customer temp = cs.find(cus.getName());
 			cus.addAttribute(temp);
+			session.setAttribute("user", cus);
 		}
 		return cus;
+	}
+
+	public static Seller checkSellerInSession(SellerService ss, HttpSession session) {
+		Seller seller = (Seller) session.getAttribute("user");
+		if (seller.getSeller_id() == null) {
+			Seller temp = ss.findSeller(seller.getName());
+			seller.addAttribute(temp);
+			session.setAttribute("user", seller);
+		}
+		return seller;
 	}
 
 }

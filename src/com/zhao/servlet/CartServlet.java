@@ -74,7 +74,7 @@ public class CartServlet extends HttpServlet {
 			 */
 			CustomerService cs = new CustomerServiceImpl();
 			HttpSession session = request.getSession(false);
-			Customer cus = ServletUtil.checkCustomerInSession(cs, request, session);
+			Customer cus = ServletUtil.checkCustomerInSession(cs, session);
 			/*
 			 * 购物车对象
 			 */

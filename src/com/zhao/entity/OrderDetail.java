@@ -1,5 +1,7 @@
 package com.zhao.entity;
 
+import java.math.BigDecimal;
+
 import com.zhao.dao.impl.GoodsDaoImpl;
 
 public class OrderDetail {
@@ -53,6 +55,11 @@ public class OrderDetail {
 		GoodsDaoImpl gdao = new GoodsDaoImpl();
 		this.goods = gdao.find("goods_id", this.getGoods_id());
 		return this.goods;
+	}
+
+	public Double getSubtotal() {
+		BigDecimal subTotal = new BigDecimal(this.goods.getPrice()).multiply(new BigDecimal(this.num));
+		return subTotal.doubleValue();
 	}
 
 }

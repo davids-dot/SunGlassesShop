@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zhao.dao.OrderDao;
 import com.zhao.dao.SellerDao;
 import com.zhao.dao.ShopDao;
 import com.zhao.dao.impl.GoodsDaoImpl;
+import com.zhao.dao.impl.OrderDaoImpl;
 import com.zhao.dao.impl.SellerDaoImpl;
 import com.zhao.dao.impl.ShopDaoImpl;
 import com.zhao.entity.Goods;
+import com.zhao.entity.Order;
 import com.zhao.entity.PageBean;
 import com.zhao.entity.QueryInfo;
 import com.zhao.entity.QueryResult;
@@ -18,6 +21,7 @@ import com.zhao.entity.Shop;
 import com.zhao.exception.GoodsHasExistException;
 import com.zhao.exception.IllegalException;
 import com.zhao.service.SellerService;
+import com.zhao.servlet.OrderType;
 
 public class SellerServiceImpl implements SellerService {
 
@@ -171,6 +175,41 @@ public class SellerServiceImpl implements SellerService {
 		page.setTotalRecords(qr.getTotalRecords());
 
 		return page;
+	}
+
+	@Override
+	public PageBean queryOrder(OrderType type, Integer shop_id, QueryInfo queryInfo) {
+
+		OrderDao odao = new OrderDaoImpl();
+		QueryResult qr = odao.querySellerOrder(type, shop_id, queryInfo);
+
+		PageBean page = new PageBean();
+		page.setList(qr.getList());
+		page.setCurrentPage(queryInfo.getCurrentPage());
+		page.setPageSize(queryInfo.getPageSize());
+		page.setTotalRecords(qr.getTotalRecords());
+		return page;
+
+	}
+
+	@Override
+	public Shop findShop(Integer seller_id) {
+		ShopDao sdao = new ShopDaoImpl();
+		return sdao.findShop(seller_id);
+	}
+
+	@Override
+	public Order findOrder(Long order_id) {
+
+		OrderDao odao = new OrderDaoImpl();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("order_id", order_id);
+		List<Order> ls = odao.queryOrders(map);
+		if (ls.size() != 1) {
+			System.out.println("严重错误");
+			throw new RuntimeException("订单查询故障");
+		}
+		return ls.get(0);
 	}
 
 }

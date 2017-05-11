@@ -1,5 +1,6 @@
 package com.zhao.entity;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -22,6 +23,20 @@ public class Cart {
 
 	public List<CartItem> getItems() {
 		return items;
+	}
+
+	public Double getTotalPrice() {
+
+		Iterator<CartItem> it = getItems().iterator();
+		BigDecimal bd = new BigDecimal(0);
+
+		while (it.hasNext()) {
+			CartItem item = it.next();
+			Goods goods = item.getGoods();
+			bd = bd.add(new BigDecimal(goods.getPrice()).multiply(new BigDecimal(item.getNum())));
+		}
+
+		return bd.doubleValue();
 	}
 
 	public void setItems(List<CartItem> items) {
