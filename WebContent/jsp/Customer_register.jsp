@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean id="now" class="java.util.Date" ></jsp:useBean>
 <!DOCTYPE>
 <html>
  <head> 
@@ -8,7 +9,7 @@
   <meta http-equiv="Expires" content="-1" /> 
   <meta http-equiv="Pragma" content="no-cache" /> 
   <title>明宇顾客注册</title> 
-  <link type="text/css" rel="stylesheet" href="../css/register.css" /> 
+  <link type="text/css" rel="stylesheet" href="../css/register.css?${now.time}" /> 
   <script type="text/javascript" src="../js/jquery-3.1.1.js"></script> 
   <script type="text/javascript" src="../js/jquery.validate.min.js"></script> 
   <script type="text/javascript" src="../js/messages_cn.js"></script> 
@@ -18,8 +19,8 @@
  </head> 
  <body> 
   <header> 
-   <div class="logo"> 
-    <img src="../images/logo.png" /> 
+   <div class="logo" > 
+   <img src="../images/logo.png"  />
    </div> 
   </header> 
   

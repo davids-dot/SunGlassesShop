@@ -14,115 +14,24 @@
 	<script src="../js/jquery-3.1.1.js"></script>
 	
 
+
+  <body>
+  
+   <input type="file" name="myFile"  id="myFile"/>
+   
+   
+   <input type="button" onclick="showFile()" value="查看文件名"/>
+   
 <script type="text/javascript">
 
-	$(function() {
-	
-	
-		    		  var selectAll =document.getElementById("selectAll");
-			/*
-			给全选添加click事件
-			*/
-						$("#selectAll").click(function() {
-						       
-						        $(":checkbox[name=checkboxBtn]").each(
-						       	      function(){
-						       	      	  		checkMe(this);
-						       	      }
-						       	);
-						       
-
-						});
-
-						 $(":checkbox[name=checkboxBtn]").each(
-
-		 		    		function(){
-		 		    			
-		 		    			 this.onclick = checkAll;
-					       	      
-					       	 }
-		 				);
-
-
-
-
-			});
-
-		  
-
-    
-    function checkAll(){
-    	var all =$(":checkbox[name=checkboxBtn]").length;
-    	var select =$(":checkbox[name=checkboxBtn]:checked").length;
-    	if(select===all){
-    		selectAll.checked=true;
-    	}else{
-    		selectAll.checked=false;
-    	}
-    }
-
-    	/*判断子选择框是否与父选择框一致*/
-
-    function checkMe(obj){
-		 var checked = selectAll.checked;
-		 	if(checked==true) {//调用checkMe 时，selectAll已更改状态
-						obj.checked = true;
-			}else {
-						obj.checked = false;
-			}
-	}
-
-
-
-	
-     /*无用函数，开发时测试*/
-	function isChecked(obj){
-		if(obj instanceof HTMLInputElement){
-			alert(obj.checked);
-		}else{
-			alert(obj.get(0).checked);
-		}
-		
-	}
-
-
-
-
-
-
-	
-
-
-
+function showFile(){
+   var file = document.getElementById("myFile");
+   
+   var files=file.files;
+   alert(files[0].name);
+}
 
 </script>
-  </head>
-  <body>
-        <table  >
-     
-     <tr>
-          <td><input type="checkbox" id="selectAll">全选</input></td>
-     </tr>       
-
-
-	 <tr align="center">
-		<td ><!-- 单选框 -->
-			<input value="${cartItem.goods_id}" type="checkbox" name="checkboxBtn" id="btn1">1</input>
-		</td>
-
-		 <tr>
-       	<td ><!-- 单选框 -->
-			<input value="${cartItem.goods_id}" type="checkbox" name="checkboxBtn" id="btn2">2</input>
-		</td>
-     </tr>
-
-              <input type ="button" onclick="isChecked($('#selectAll').get(0))" value="查看全选"/>
-                <input type ="button" onclick="isChecked($('#btn1').get(0))" value="查看1选"/>
-                  <input type ="button" onclick="isChecked($('#btn2'))" value="查看2选"/>
-
-                  <input type ="button" onclick="cancelChecked($('#btn2').get(0))" value="撤销2选"/>
-                    <input type ="button" onclick="check($('#btn2').get(0))" value="选中2选"/>
-        </table>
   
 
 

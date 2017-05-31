@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/my" prefix="my" %>
+<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
 <!DOCTYPE html >
 <html>
 <head>
@@ -11,7 +12,7 @@
 			
 <link href="${pageContext.servletContext.contextPath}/css/style.css" rel="stylesheet" type="text/css" media="all" />	
 			
-		<link type="text/css" rel="stylesheet" href="index.css"></link>	
+		<link type="text/css" rel="stylesheet" href="index.css?${now.time}"></link>	
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="${pageContext.servletContext.contextPath}/js/jquery-3.1.1.js"></script>
 <!-- Custom Theme files -->
@@ -22,6 +23,8 @@
 
 
 <style>
+
+<!--分页相关样式-->
 ul.page {
 	padding: 1em 0 1em 15em;
 	
@@ -57,6 +60,8 @@ ul.page li a i{
 ul.page li a i.next {
 	background-position:-136px -54px;
 }
+<!--分页相关样式-->
+
 
 
 .head-top{
@@ -65,7 +70,7 @@ ul.page li a i.next {
 .head-top li{
   
     float:right;
-    padding:0 5px;
+    padding:0 137px;
 }
 .head-top a{
    
@@ -78,7 +83,6 @@ ul.page li a i.next {
 
 .search_text {
     width: 30%;
-    background-color: #90c31f;
     text-align: center;
 }
 
@@ -90,18 +94,18 @@ ul.page li a i.next {
     background: url(images/find.png) no-repeat right center;
     background-color: white;
     padding-right: 15px;
+    border:1px solid #90c31f;
 }
 
 
 .shoppingCart {
     margin-left: 100px;
-    background-color: #999999;
 }
 
 .cart {
     vertical-align: middle;
     margin: 10px;
-    background-color: #fff;
+
     line-height: 40px;
     height: 40px;
     text-align: center;
@@ -139,7 +143,8 @@ ul.page li a i.next {
     width: 20%;
     margin-right: 40px;
     height: 60px;
-    background-color: #90c31f;
+    background-color: #fff;
+    border:1px solid #90c31f;
 }
 
 .login_pic {
@@ -179,7 +184,7 @@ ul.page li a i.next {
 					<div class="header_pic" style="width:114%;margin-left:-7%;background-color:#b7b1a0">
 							<ul class="head-top">
 							    <li><a href="${pageContext.servletContext.contextPath}/SellerLogin.jsp">我是商家</a></li>
-							    <li></li>
+							    <li><a href="${pageContext.servletContext.contextPath}/BussinessServlet?type=showSome">我的订单</a></li>
 							    <li></li>
 							    <li></li> 
 							</ul>
@@ -188,15 +193,15 @@ ul.page li a i.next {
 					<div class="header_main">
 
 							<div id="logo">
-								<img src="images/logo.gif" />
+								<img src="images/logo.png" style="height:60px;border-radius:3px;" />
 							</div>
 
 							<div class="search_text">
-									<input type="text" id="search_main"></input>
+									<input type="text" id="search_main" ></input>
 							</div>
 
 							<div id="search_text_right">
-								
+								<input type="button" value="搜索" id="search_right" style="position:absolute;top:70px;left:570px;"/>
 							</div>
 
 
@@ -216,7 +221,7 @@ ul.page li a i.next {
 									<p>欢迎来到明宇眼镜</p>
 
 									<p><a href="login.jsp">登录</a> 
-									<a href="SellerLogin.jsp">注册</a><p>
+									<a href="jsp/Customer_register.jsp">注册</a><p>
 							</div>
 					</div>
 				</header>
@@ -743,7 +748,22 @@ ul.page li a i.next {
 				</footer>
 
 
-				
+<script type="text/javascript">
+ $(function(){
+	var  search = document.getElementById("search_main");
+	var submit =document.getElementById('search_right');
+	submit.addEventListener('click',function(event){
+		var keyword= search.value;
+		keyword =   keyword.replace(/\s+/g,'');
+		if(keyword==null||keyword==""||keyword.length==0) return;
+		var expire = new Date();
+		expire.setTime(expire.getTime()+2000);
+		document.cookie = 'keyword='+escape(keyword)+";expires="+expire.toGMTString();
+		window.location.href='${pageContext.servletContext.contextPath}/jsp/goodsQuery/queryGoods.jsp';
+	});
+ });
+ 
+</script>	
 
 
 				

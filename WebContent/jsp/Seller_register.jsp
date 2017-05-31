@@ -19,7 +19,7 @@
  <body> 
   <header> 
    <div class="logo"> 
-    <img src="../images/logo.png" /> 
+    <img src="../images/logo.png"  />
    </div> 
   </header> 
   

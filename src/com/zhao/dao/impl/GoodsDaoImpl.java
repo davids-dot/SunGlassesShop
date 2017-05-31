@@ -1,8 +1,10 @@
 package com.zhao.dao.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import com.zhao.entity.Goods;
 import com.zhao.entity.QueryResult;
@@ -114,6 +116,60 @@ public class GoodsDaoImpl extends GenericDaoImpl<Goods> {
 			return null;
 		}
 
+	}
+
+	@SuppressWarnings("unchecked")
+	public QueryResult GoodsList(Map<String, Object> param, int startIndex, int pageSize) {
+		try {
+			// ############################################
+			QueryResult qr = new QueryResult();
+
+			StringBuilder sb = new StringBuilder();
+			List<Object> queryParam = new ArrayList<Object>();
+			sb.append("select * from goods where 1=1 ");
+
+			if (param.get("keyword") != null) {
+				sb.append("and  name like ? or manufacturer like ? or brand like ? ");
+				String keyword = (String) param.get("keyword");
+				queryParam.add("%" + keyword + "%");
+				queryParam.add("%" + keyword + "%");
+				queryParam.add("%" + keyword + "%");
+			}
+
+			if (param.get("brand") != null) {
+				sb.append(" and  brand like ? ");
+				queryParam.add("%" + param.get("brand") + "%");
+			}
+			if (param.get("lowPrice") != null) {
+				sb.append(" and  price >= ? ");
+				queryParam.add(param.get("lowPrice"));
+			}
+			if (param.get("highPrice") != null) {
+				sb.append(" and  price <= ? ");
+				queryParam.add(param.get("highPrice"));
+			}
+
+			sb.append(" limit ?,? ");
+			queryParam.add(startIndex);
+			queryParam.add(pageSize);
+
+			qr.setList((List<Goods>) DBUtil2.executeQuery(sb.toString(), queryParam,
+					new BeanListHandler<Goods>(Goods.class)));
+
+			String query = sb.toString();
+			query = query.replace("*", "count(*)");
+			Integer totalRecords;
+
+			// select count(*) where xxx limit y,m
+			// xxx对结果有影响，y,m对结果无影响
+			totalRecords = (Integer) DBUtil2.executeQuery(query, queryParam, new ResultSizeHandler());
+			qr.setTotalRecords(totalRecords);
+
+			return qr;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

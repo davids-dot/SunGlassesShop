@@ -39,8 +39,7 @@
     width:110px;
     background:url(../../images/goodsQuery/search-right.png) no-repeat right center;
    }
-   #goodsList{
-   }
+ 
    
    .options{
      width:70%;
@@ -62,7 +61,7 @@
      padding-left:12px;
    }
    
-   #goodsList{
+   #goodsPage{
     width:100%;
     min-height:1000px;
     border:0;
@@ -94,14 +93,57 @@
          
            <div class="options">
               <label class="option-title">价格</label>
-              <label >最低<input class="money" type="number" name="lowPrice" /></label>
-              <label >最高<input class="money" type="number" name="highPrice" /></label>
+              <label >最低<input class="money" type="number" min="0" name="lowPrice" id="lowPrice"/></label>
+              <label >最高<input class="money" type="number" min="0" name="highPrice" id="highPrice"/></label>
     	   </div>
     	   
     </header>
-    <iframe name="goodsList" id="goodsList">
+    <iframe name="goodsPage" id="goodsPage">
     
     </iframe>
 
+
+<script type="text/javascript">
+
+
+  var keyword = "";
+  if(document.cookie.length>0){
+
+	  c_start = document.cookie.indexOf('keyword=');
+	  if(c_start!=-1){
+		  c_end =document.cookie.indexOf(';',c_start);
+		  if(c_end==-1) c_end =document.cookie.length;
+		  keyword = unescape(document.cookie.substring(c_start+8,c_end));
+	  }
+  }
+
+  if(keyword!=""){
+	  $("#goodsPage").attr("src","/SunGlassesShop/GoodsQueryServlet?type=queryGoods&keyword="+keyword);
+      $('#searchText').attr('value',keyword);
+  }
+
+
+$(function(){
+  document.getElementById("search-right").addEventListener('click',function(event){
+	  var  searchText = document.getElementById("searchText").value;
+	  searchText = searchText.replace(/\s+/g,'');
+	 // if(searchText==null||searchText==""||searchText.length==0) return;
+	  var brands = document.getElementsByName("brand");
+	  var brand ="";
+	  for(var i=0;i<brands.length;i++){
+		  if(brands[i].checked == true){
+			  brand = brands[i].value;
+		  }
+	  }
+	  
+	  var lowPrice = document.getElementById("lowPrice").value;
+	  var highPrice =document.getElementById("highPrice").value;
+	  $("#goodsPage").attr("src","/SunGlassesShop/GoodsQueryServlet?type=queryGoods&keyword="+searchText+"&brand="+brand+"&lowPrice="+lowPrice+"&highPrice="+highPrice+"&cur=1&pSize=50");
+	  
+  });
+});
+
+</script>
 </body>
+
 </html>

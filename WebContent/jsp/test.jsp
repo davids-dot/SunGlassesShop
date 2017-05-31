@@ -9,7 +9,11 @@
 <body>
 
   <jsp:useBean id="now" class="java.util.Date"  scope="page"></jsp:useBean>
-  ${now.time}
+
+<form  action="${pageContext.servletContext.contextPath}/jsp/goodsQuery/queryGoods.jsp" method ="post">
+
+  <input type="submit" value="提交" />
+</form>
 
 </body>
 </html>

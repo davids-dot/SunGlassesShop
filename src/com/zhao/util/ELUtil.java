@@ -11,6 +11,7 @@ public class ELUtil {
 		return realPath;
 	}
 
+	// 将订单号转化为 日期时间格式
 	public static String realDate(Long dateStr) {
 
 		String str = dateStr.toString();

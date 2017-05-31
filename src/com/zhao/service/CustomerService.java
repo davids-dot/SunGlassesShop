@@ -34,6 +34,7 @@ public interface CustomerService {
 
 	public Order buyGoods(Integer goods_id, Integer customer_id) throws NoAvailableGoodsException;
 
+	@Deprecated
 	public Order buyGoods(Cart cart);
 
 	public Order buyGoods(ArrayList<CartItem> items, Integer custoemr_id);
@@ -47,4 +48,7 @@ public interface CustomerService {
 	public PageBean querySomeOrders(Integer customer_id, QueryInfo queryInfo);
 
 	public PageBean querySomeOrders(Map<String, Object> queryParam, QueryInfo request2QueryInfo);
+
+	public PageBean queryGoods(Map<String, String> map, QueryInfo queryInfo);
+
 }

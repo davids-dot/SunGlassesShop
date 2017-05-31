@@ -66,6 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
 		return gdao.find("goods_id", goods.getGoods_id());
 	}
 
+	//
 	public Order buyGoods(Cart cart) {
 
 		return null;
@@ -221,6 +222,37 @@ public class CustomerServiceImpl implements CustomerService {
 		page.setList(qr.getList());
 
 		return page;
+	}
+
+	@Override
+	public PageBean queryGoods(Map<String, String> map, QueryInfo queryInfo) {
+		GoodsDaoImpl gdao = new GoodsDaoImpl();
+
+		String keyword = map.get("keyword");
+		String brand = map.get("brand");
+		String lowPrice = map.get("lowPrice");
+		String highPrice = map.get("highPrice");
+
+		Map<String, Object> param = new HashMap<String, Object>();
+		if (keyword != null) {
+			param.put("keyword", keyword);
+		}
+		if (brand != null) {
+			param.put("brand", brand);
+		}
+		if (lowPrice != null) {
+			param.put("lowPrice", Double.parseDouble(lowPrice));
+		}
+		if (highPrice != null) {
+			param.put("highPrice", Double.parseDouble(highPrice));
+		}
+
+		QueryResult qr = gdao.GoodsList(param, queryInfo.getStartIndex(), queryInfo.getPageSize());
+		PageBean page = new PageBean(queryInfo.getCurrentPage(), queryInfo.getPageSize(), qr.getTotalRecords());
+		page.setList(qr.getList());
+
+		return page;
+
 	}
 
 }

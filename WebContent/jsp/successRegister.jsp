@@ -12,7 +12,7 @@
 		<meta http-equiv="refresh" content="10;url=${pageContext.servletContext.contextPath}"/> 
 		</c:if>
 		 <c:if test="${user.type==\"Seller\"}">
-		 <meta http-equiv="refresh" content="10;url=${pageContext.servletContext.contextPath}/html/Seller_manage.html"/> 
+		 <meta http-equiv="refresh" content="10;url=${pageContext.servletContext.contextPath}/jsp/SellerManage.jsp"/> 
 		</c:if>
 		 
 		<script type="text/javascript" src="js/util.js"></script>

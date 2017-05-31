@@ -23,7 +23,7 @@
 <!--fonts-->
 <link href='https://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
 <!--//fonts-->
-
+										<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/flexslider.css" type="text/css" media="screen" />
 				<script type="text/javascript">
 					jQuery(document).ready(function($) {
 						$(".scroll").click(function(event){		
@@ -100,7 +100,7 @@
 			<div class="container">	
 			<div class="header-top-in">			
 				<div class="logo">
-					<a href="index.html"><img src="${pageContext.servletContext.contextPath}/images/logo.png" alt=" " ></a>
+					<a href="index.html"><img src="${pageContext.servletContext.contextPath}/images/logo.png"  style ="height:60px;opacity:0.4;"  alt=" " ></a>
 				</div>
 				<div class="header-in">
 					<ul class="icon1 sub-icon1">
@@ -225,7 +225,7 @@
 							        <!-- FlexSlider -->
 										<script src="${pageContext.servletContext.contextPath}/js/imagezoom.js"></script>
 										
-										<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/flexslider.css" type="text/css" media="screen" />
+
 
 									
 

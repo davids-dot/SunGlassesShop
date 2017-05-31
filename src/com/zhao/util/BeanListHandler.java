@@ -1,5 +1,6 @@
 package com.zhao.util;
 
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -29,9 +30,12 @@ public class BeanListHandler<T> implements ResultSetHandler {
 					if (colValue == null) {
 
 					}
-					Field field = clazz.getDeclaredField(colName);
-					field.setAccessible(true);
-					field.set(obj, colValue);
+//					Field field = clazz.getDeclaredField(colName);
+//					field.setAccessible(true);ss
+//					field.set(obj, colValue);
+					PropertyDescriptor pd = new PropertyDescriptor(colName, clazz);
+					pd.getWriteMethod().invoke(obj, colValue);
+				
 				}
 				answer.add(obj);
 			}

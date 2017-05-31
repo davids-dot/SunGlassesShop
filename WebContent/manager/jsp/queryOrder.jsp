@@ -20,11 +20,10 @@
             <div role="tabpanel" class="tab-pane" id="user">
                 <div class="check-div form-inline">
                     <div class="col-xs-3">
-                        <button class="btn btn-yellow btn-xs" >查看图表 </button>
+                        <button class="btn btn-yellow btn-xs" onclick="getChart()">查看交易额统计 </button>
                     </div>
                     <div class="col-xs-4">
-                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
-                        <button class="btn btn-white btn-xs " id="queryOrderBtn">查 询 订单</button>
+                       <button class="btn btn-yellow btn-xs" onclick="getShopRank()">查看商铺交易排行 </button>
                     </div>
                     <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
                         <label for="paixu">排序:&nbsp;</label>
@@ -44,12 +43,16 @@
 
 </body>
 <script>
-  $(function(){
-	  $("#queryOrderBtn").onclick(function(){
-		  $("#orders").attr("src","${pageContext.servletContext.contextPath}/manager/jsp/orderList.jsp");
-	  });
-	  
-  });
+
+  
+  function getShopRank(){
+	  $("#orders").attr("src","${pageContext.servletContext.contextPath}/ManagerServlet?type=queryShopRank&cur=1&psize=5");
+  }
+  
+  
+  function getChart(){
+	  $("#orders").attr("src","${pageContext.servletContext.contextPath}/ManagerServlet?type=queryAmount");
+  }
 </script>
 
 </html>

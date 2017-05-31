@@ -21,9 +21,13 @@
               
                 <a class="meun-title">交易信息管理</a>
                 <a class="meun-item" href="jsp/queryOrder.jsp" target="rightPage"><img src="images/icon_source_grey.png" />订单查看</a>
-                <a class="meun-item" href="#char" ><img src="images/icon_chara_grey.png">用户信息管理</a>
-                <a class="meun-item meun-item-active" href="#user" ><img src="images/icon_user.png">用户管理</a>
-                <a class="meun-item" href="#chan" ><img src="images/icon_change_grey.png">修改密码</a>
+                <a class="meun-item" href="jsp/userInfo.jsp" ><img src="images/icon_chara_grey.png">用户信息管理</a>
+                
+                <!--${pageContext.request.contextPath }/manager/jsp/registermanager.jsp  -->
+                <a class="meun-item meun-item-active" href="jsp/userManage.jsp" target="rightPage"><img src="images/icon_user.png">用户管理</a>
+                
+                
+                <a class="meun-item" href="${pageContext.request.contextPath }/UserManageServlet?page.nextPage=0" ><img src="images/icon_change_grey.png">修改密码</a>
                 <a class="meun-title">其他管理</a>
                 <a class="meun-item" href="#scho" ><img src="images/icon_house_grey.png">地区管理</a>
                 <a class="meun-item" href="#regu" ><img src="images/icon_rule_grey.png">规则管理</a>

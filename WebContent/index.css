@@ -17,7 +17,7 @@
 
 				 header{
 				 	margin:0 auto;
-				 	background-color:#999999;
+				 	background-color:#e4e4e4;
 				 	height:120px;
 				 }
 
@@ -37,6 +37,7 @@
 				 .header_main{
 				 	margin-top:20px;
 				 	overflow: hidden;
+				 	background-color:#e4e4e4;
 				 }
 
 				 #logo,.search_text,.shoppingCart{
@@ -47,16 +48,12 @@
 
 				 .search_text{
 				 	width:30%;
-				 	
-
-				 	  background-color: #90c31f;
-				 
 				 }
 
 				 .shoppingCart{
 				 		 text-align: center;
 				 		   margin-left:100px;
-				 		 background-color: #90c31f;
+				 	
 				 		 line-height: 56px;
 				 }
 
@@ -65,7 +62,7 @@
 				 	 width:20%;
 				 	 margin-right:40px;
 				 	  height:60px;
-				 	 background-color: #90c31f;
+				 	 background-color:#fff;
 
 				 }
 

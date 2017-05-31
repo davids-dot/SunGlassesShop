@@ -7,11 +7,17 @@ import java.util.List;
 
 import com.zhao.dao.ShopDao;
 import com.zhao.entity.Goods;
+import com.zhao.entity.QueryInfo;
+import com.zhao.entity.QueryResult;
+import com.zhao.entity.Seller;
 import com.zhao.entity.Shop;
 import com.zhao.util.BeanHandler;
+import com.zhao.util.BeanListHandler;
 import com.zhao.util.DBUtil;
 import com.zhao.util.DBUtil2;
 import com.zhao.util.IsNullHandler;
+import com.zhao.util.OneAttributeHandler;
+import com.zhao.util.ResultSizeHandler;
 
 public class ShopDaoImpl implements ShopDao {
 
@@ -68,6 +74,63 @@ public class ShopDaoImpl implements ShopDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public QueryResult queryShopRank(QueryInfo queryInfo) {
+
+		try {
+			QueryResult qr = new QueryResult();
+			String sql = " select  shop_id,sum(tPrice) as week_amount  from  v_shop_amount_detail "
+					+ " where curDate()< date_add(order_date,interval 7 day) group by shop_id order by week_amount desc limit ?, ? ";
+
+			qr.setList((List<? extends Object>) DBUtil2.executeQuery(sql,
+					Arrays.asList(queryInfo.getStartIndex(), queryInfo.getPageSize()),
+					new BeanListHandler<Shop>(Shop.class)));
+
+			sql = sql.substring(0, sql.length() - 12);
+
+			qr.setTotalRecords((int) DBUtil2.executeQuery(sql, null, new ResultSizeHandler()));
+
+			return qr;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	/*
+	 * seller_id int not null auto_increment, name varchar(30) unique, id_card
+	 * varchar(24), address varchar(20),
+	 * 
+	 * photoURI varchar(60), realName varchar(20), (non-Javadoc)
+	 * 
+	 * @see com.zhao.dao.ShopDao#findSeller(java.lang.Integer)
+	 */
+	@Override
+	public Seller findSeller(Integer shop_id) {
+		String sql = " select Seller.seller_id,Seller.name,id_card,address,realName,photoURI from seller,Shop where Shop.seller_id = seller.seller_id and Shop.shop_id = ? ";
+		try {
+			return (Seller) DBUtil2.executeQuery(sql, Arrays.asList(shop_id), new BeanHandler<Seller>(Seller.class));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public String findAttribute(String string, Integer shop_id) {
+		String sql = "select " + string + " from shop where shop_id =  ? ";
+
+		try {
+			return (String) DBUtil2.executeQuery(sql, Arrays.asList(shop_id), new OneAttributeHandler());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

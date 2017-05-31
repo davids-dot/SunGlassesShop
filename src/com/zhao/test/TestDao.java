@@ -6,6 +6,7 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +35,8 @@ import com.zhao.entity.QueryResult;
 import com.zhao.entity.Shop;
 import com.zhao.exception.NoAvailableGoodsException;
 import com.zhao.servlet.OrderType;
+import com.zhao.util.BeanListHandler;
+import com.zhao.util.DBUtil2;
 
 public class TestDao {
 
@@ -42,6 +45,19 @@ public class TestDao {
 		ShopDao sdao = new ShopDaoImpl();
 		Shop shop = sdao.findShop(1);
 		System.out.println(shop);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testQueryGoods() throws SQLException {
+		GoodsDaoImpl gdao = new GoodsDaoImpl();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", "达康");
+		map.put("lowPrice", 17.6);
+		map.put("highPrice", 200);
+		QueryResult qr = gdao.GoodsList(map, 0, 50);
+		System.out.println(qr.getList());
+		System.out.println(qr.getTotalRecords());
 	}
 
 	@Test

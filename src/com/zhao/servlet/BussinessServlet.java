@@ -149,6 +149,10 @@ public class BussinessServlet extends HttpServlet {
 
 	}
 
+	/*
+	 * type=queryGoods&keyword="+searchText
+	 */
+
 	private void changeOrder(HttpServletRequest request, HttpServletResponse response, String type) throws IOException {
 		Long order_id = Long.parseLong(request.getParameter("orderId"));
 		OrderDao odao = new OrderDaoImpl();

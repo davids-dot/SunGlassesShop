@@ -13,7 +13,7 @@
 		<body>
 				<header>
 						<div class="logo">
-							<img src="images/logo.png"/>
+						<img src="images/logo.png" style="height:70px;border-radius:3px;"/>
 						</div>
 				 </header>
 

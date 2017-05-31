@@ -8,6 +8,15 @@
 			header{
 
 			}	
+			
+			.logo{
+			 margin-left:300px;
+			}
+			
+			.logo img{
+			 height:70px;
+			 border-radius:3px;
+			}
 
 
 			a{
@@ -31,11 +40,6 @@
 						border:1px solid #5a2b43;
 					
 					}
-
-
-					
-
-					
 
 					#login_title{
 

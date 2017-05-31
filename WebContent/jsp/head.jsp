@@ -50,8 +50,8 @@
     <div class="header-top">
 			<div class="container">	
 			<div class="header-top-in">			
-				<div class="logo">
-					<a href="index.html"><img src="${pageContext.servletContext.contextPath}/images/logo.png" alt=" " ></a>
+				<div class="logo" style="background-color:#fb55e33;">
+					<a href="index.html"><img src="${pageContext.servletContext.contextPath}/images/logo.png" style ="height:60px;opacity:0.4;" alt=" " ></a>
 				</div>
 				<div class="header-in">
 					<ul class="icon1 sub-icon1">
