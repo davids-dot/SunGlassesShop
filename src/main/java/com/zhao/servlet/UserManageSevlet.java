@@ -1,11 +1,9 @@
 package com.zhao.servlet;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.DispatcherType;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +24,7 @@ public class UserManageSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserManageService userManageService = new UserManageServiceImpl();
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Page op = new Page();

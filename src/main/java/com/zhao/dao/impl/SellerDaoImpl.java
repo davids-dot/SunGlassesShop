@@ -72,7 +72,7 @@ public class SellerDaoImpl implements SellerDao {
 		params.add(name);
 
 		try {
-			return (Seller) DBUtil2.executeQuery(sql, params, new BeanHandler<Seller>(Seller.class));
+			return (Seller) DBUtil2.executeQuery(sql,new BeanHandler<Seller>(Seller.class), params);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -95,8 +95,8 @@ public class SellerDaoImpl implements SellerDao {
 		String sql = " select * from shop_has_goods where 1=1 and goods_id=? and shop_id = ? ";
 
 		try {
-			return !(boolean) DBUtil2.executeQuery(sql, Arrays.asList(goods.getGoods_id(), shop.getShop_id()),
-					new IsNullHandler());
+			return !(boolean) DBUtil2.executeQuery(sql,
+					new IsNullHandler(), goods.getGoods_id(), shop.getShop_id() );
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

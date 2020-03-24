@@ -57,8 +57,9 @@ public class Cart {
 		try {
 			Cart cart = new Cart(customer_id);
 			String sql = "select goods_id,num,shop_id from cart_detail where customer_id = ? ";
-			cart.setItems((List<CartItem>) DBUtil2.executeQuery(sql, Arrays.asList(customer_id),
-					new BeanListHandler<CartItem>(CartItem.class)));
+			cart.setItems((List<CartItem>) DBUtil2.executeQuery(sql,
+					new BeanListHandler<CartItem>(CartItem.class),
+					customer_id));
 			// 每个cartItem 都有了 goods_id,num,shop_id
 
 			/*

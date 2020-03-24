@@ -11,7 +11,7 @@ import java.util.List;
 public class DBUtil2 {
 
 	private static String driver = "com.mysql.jdbc.Driver";
-	private static String url = "jdbc:mysql://localhost:3306/sun?useUnicode=true&characterEncoding=UTF-8";
+	private static String url = "jdbc:mysql://localhost:3306/sun?useUnicode=true&characterEncoding=utf8";
 
 	static {
 		try {
@@ -21,7 +21,7 @@ public class DBUtil2 {
 		}
 	}
 
-	public static Object executeQuery(String sql, List<Object> param, ResultSetHandler handler) throws SQLException {
+	public static Object executeQuery(String sql, ResultSetHandler handler, Object ... params) throws SQLException {
 
 		Connection conn = null;
 		PreparedStatement pts = null;
@@ -33,12 +33,11 @@ public class DBUtil2 {
 			pts = conn.prepareStatement(sql);
 			pts.clearParameters();
 
-			if (param != null && param.size() != 0) {
-				for (int i = 0; i < param.size(); i++) {
-					pts.setObject(i + 1, param.get(i));
+			if (params != null) {
+				for (int i = 0; i < params.length; ++i) {
+					pts.setObject(i + 1, params[i]);
 				}
 			}
-
 			rs = pts.executeQuery();
 
 			return handler.handle(rs);
@@ -52,7 +51,7 @@ public class DBUtil2 {
 	private static Connection getConnection() {
 
 		try {
-			return DriverManager.getConnection(url, "root", "1234");
+			return DriverManager.getConnection(url, "root", "12345");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -86,7 +85,7 @@ public class DBUtil2 {
 
 	}
 
-	public static boolean executeUpdate(String sql, List<Object> param) throws SQLException {
+	public static boolean executeUpdate(String sql, Object ... params) throws SQLException {
 
 		Connection conn = null;
 		PreparedStatement pts = null;
@@ -97,9 +96,9 @@ public class DBUtil2 {
 			pts = conn.prepareStatement(sql); // SQLException
 			pts.clearParameters();
 
-			if (param != null && param.size() != 0) {
-				for (int i = 0; i < param.size(); i++) {
-					pts.setObject(i + 1, param.get(i));
+			if (params != null ) {
+				for (int i = 0; i < params.length; i++) {
+					pts.setObject(i + 1, params[i]);
 				}
 			}
 

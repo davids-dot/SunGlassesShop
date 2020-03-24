@@ -21,9 +21,8 @@ public class CommodityManageDaoImpl implements CommodityManageDao {
 				+ "(select shop_id from shop where seller_id="
 				+ "(select seller_id from seller where name= ?)))"
 				+ " limit " + page.getCurrentPage() * 5 + "," + 5;
-		List<Object> params=new ArrayList<>();
- 		params.add(userid);
-		return (List<GoodsCustom>) DBUtil2.executeQuery(sql, params, new BeanListHandler<GoodsCustom>(GoodsCustom.class));
+		return (List<GoodsCustom>) DBUtil2.executeQuery(sql, new BeanListHandler<GoodsCustom>(GoodsCustom.class),
+				userid);
 	}
 
 	@Override
@@ -32,9 +31,7 @@ public class CommodityManageDaoImpl implements CommodityManageDao {
 				+ "(select goods_id from shop_has_goods where shop_id="
 				+ "(select shop_id from shop where seller_id="
 				+ "(select seller_id from seller where name= ?)))";
-		List<Object> params=new ArrayList<>();
- 		params.add(userid);
- 		return (Integer) DBUtil2.executeQuery(sql, params, new ResultSizeHandler());
+ 		return (Integer) DBUtil2.executeQuery(sql,  new ResultSizeHandler(), userid);
 	}
 
 	@Override

@@ -27,8 +27,9 @@ public class GoodsDaoImpl extends GenericDaoImpl<Goods> {
 		try {
 			String sql = "select * from goods where goods_id in(select goods_id from shop_has_goods where"
 					+ " shop_id = ? )";
-			return (List<Goods>) DBUtil2.executeQuery(sql, Arrays.asList(shop.getShop_id()),
-					new BeanListHandler<Goods>(Goods.class));
+			return (List<Goods>) DBUtil2.executeQuery(sql,
+					new BeanListHandler<Goods>(Goods.class),
+					shop.getShop_id());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -57,8 +58,9 @@ public class GoodsDaoImpl extends GenericDaoImpl<Goods> {
 
 			QueryResult qr = new QueryResult();
 			String sql = "select * from goods limit ?,? ";
-			qr.setList((List<Goods>) DBUtil2.executeQuery(sql, Arrays.asList(startIndex, pageSize),
-					new BeanListHandler<Goods>(Goods.class)));
+			qr.setList((List<Goods>) DBUtil2.executeQuery(sql,
+					new BeanListHandler<Goods>(Goods.class),
+					startIndex, pageSize));
 
 			String sql2 = "select count(*) from goods ";
 
@@ -79,7 +81,7 @@ public class GoodsDaoImpl extends GenericDaoImpl<Goods> {
 
 		try {
 			String sql = "select stock from shop_has_goods where goods_id=? and shop_id = ? ";
-			return (Integer) DBUtil2.executeQuery(sql, Arrays.asList(goods_id, shop_id), new ResultSizeHandler());
+			return (Integer) DBUtil2.executeQuery(sql,  new ResultSizeHandler(), goods_id, shop_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -98,14 +100,16 @@ public class GoodsDaoImpl extends GenericDaoImpl<Goods> {
 
 			String sql = "select * from goods where goods_id in(select goods_id from shop_has_goods where"
 					+ " shop_id = ? ) limit ?,?";
-			qr.setList((List<Goods>) DBUtil2.executeQuery(sql, Arrays.asList(shop.getShop_id(), startIndex, pageSize),
-					new BeanListHandler<Goods>(Goods.class)));
+			qr.setList((List<Goods>) DBUtil2.executeQuery(sql,
+					new BeanListHandler<Goods>(Goods.class),
+					shop.getShop_id(), startIndex, pageSize));
 
 			String sql2 = "select count(*) from goods where goods_id in(select goods_id from shop_has_goods where"
 					+ " shop_id = ? )";
 
-			Integer totalRecords = (Integer) DBUtil2.executeQuery(sql2, Arrays.asList(shop.getShop_id()),
-					new ResultSizeHandler());
+			Integer totalRecords = (Integer) DBUtil2.executeQuery(sql2,
+					new ResultSizeHandler(),
+					shop.getShop_id());
 
 			qr.setTotalRecords(totalRecords);
 
@@ -153,8 +157,10 @@ public class GoodsDaoImpl extends GenericDaoImpl<Goods> {
 			queryParam.add(startIndex);
 			queryParam.add(pageSize);
 
-			qr.setList((List<Goods>) DBUtil2.executeQuery(sb.toString(), queryParam,
-					new BeanListHandler<Goods>(Goods.class)));
+
+			qr.setList((List<Goods>) DBUtil2.executeQuery(sb.toString(),
+					new BeanListHandler<Goods>(Goods.class),
+					queryParam.toArray()));
 
 			String query = sb.toString();
 			query = query.replace("*", "count(*)");
@@ -162,7 +168,7 @@ public class GoodsDaoImpl extends GenericDaoImpl<Goods> {
 
 			// select count(*) where xxx limit y,m
 			// xxx对结果有影响，y,m对结果无影响
-			totalRecords = (Integer) DBUtil2.executeQuery(query, queryParam, new ResultSizeHandler());
+			totalRecords = (Integer) DBUtil2.executeQuery(query,  new ResultSizeHandler(),queryParam.toArray());
 			qr.setTotalRecords(totalRecords);
 
 			return qr;

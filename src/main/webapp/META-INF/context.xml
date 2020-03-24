@@ -24,9 +24,9 @@
             auth="Container"
             type="javax.sql.DataSource"
             username="root"
-            password="1234"
+            password="12345"
             driverClassName="com.mysql.jdbc.Driver"
-            url ="jdbc:mysql://localhost:3306/sun?characterEncoding=utf8"
+            url ="jdbc:mysql://localhost:3306/sun?characterEncoding=utf8mb4"
             maxTotal="8"
             maxIdle="4"/>
 

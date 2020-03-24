@@ -57,7 +57,7 @@ public class ShopDaoImpl implements ShopDao {
 
 		String sql = " select * from  shop  where seller_id = ? ";
 		try {
-			return (Shop) DBUtil2.executeQuery(sql, Arrays.asList(seller_id), new BeanHandler<Shop>(Shop.class));
+			return (Shop) DBUtil2.executeQuery(sql, new BeanHandler<>(Shop.class), seller_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -68,8 +68,8 @@ public class ShopDaoImpl implements ShopDao {
 	public boolean existGoods(Shop shop, Goods goods) {
 		String sql = "select shop_id from shop_has_goods where goods_id = ? and shop_id= ? ";
 		try {
-			return (boolean) DBUtil2.executeQuery(sql, Arrays.asList(goods.getGoods_id(), shop.getShop_id()),
-					new IsNullHandler());
+			return (boolean) DBUtil2.executeQuery(sql, new IsNullHandler(),
+					goods.getGoods_id(), shop.getShop_id());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -86,8 +86,8 @@ public class ShopDaoImpl implements ShopDao {
 					+ " where curDate()< date_add(order_date,interval 7 day) group by shop_id order by week_amount desc limit ?, ? ";
 
 			qr.setList((List<? extends Object>) DBUtil2.executeQuery(sql,
-					Arrays.asList(queryInfo.getStartIndex(), queryInfo.getPageSize()),
-					new BeanListHandler<Shop>(Shop.class)));
+					new BeanListHandler<Shop>(Shop.class),
+					queryInfo.getStartIndex(), queryInfo.getPageSize() ));
 
 			sql = sql.substring(0, sql.length() - 12);
 
@@ -114,7 +114,7 @@ public class ShopDaoImpl implements ShopDao {
 	public Seller findSeller(Integer shop_id) {
 		String sql = " select Seller.seller_id,Seller.name,id_card,address,realName,photoURI from seller,Shop where Shop.seller_id = seller.seller_id and Shop.shop_id = ? ";
 		try {
-			return (Seller) DBUtil2.executeQuery(sql, Arrays.asList(shop_id), new BeanHandler<Seller>(Seller.class));
+			return (Seller) DBUtil2.executeQuery(sql, new BeanHandler<Seller>(Seller.class),shop_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -126,7 +126,7 @@ public class ShopDaoImpl implements ShopDao {
 		String sql = "select " + string + " from shop where shop_id =  ? ";
 
 		try {
-			return (String) DBUtil2.executeQuery(sql, Arrays.asList(shop_id), new OneAttributeHandler());
+			return (String) DBUtil2.executeQuery(sql,  new OneAttributeHandler(), shop_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

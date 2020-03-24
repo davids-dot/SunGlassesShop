@@ -1,1 +1,5 @@
 .project
+.idea/
+src/main/resources/
+sunglasses-web.iml
+target/

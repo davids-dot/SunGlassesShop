@@ -121,11 +121,8 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 	public T find(String att, Object value) {
 
 		String sql = "select * from " + tableName + " where " + att + "= ?";
-		List<Object> params = new ArrayList<Object>();
-		params.add(value);
-
 		try {
-			return (T) DBUtil2.executeQuery(sql, params, new BeanHandler<T>(clazz));
+			return (T) DBUtil2.executeQuery(sql, new BeanHandler<T>(clazz),value);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -140,18 +137,21 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 		this.clazz = clazz;
 	}
 
+	@Override
 	public boolean exist(Map<String, Object> params) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("select * from " + tableName + " where 1=1 ");
-		List<Object> param = new ArrayList<Object>();
+
+		Object[] paramArr = new Object[params.size()];
+        int idx = 0;
 
 		for (Entry<String, Object> entry : params.entrySet()) {
 			sb.append(" and " + entry.getKey() + " = ? ");
-			param.add(entry.getValue());
+			paramArr[idx++] = entry.getValue();
 		}
 
 		try {
-			return !(boolean) DBUtil2.executeQuery(sb.toString(), param, new IsNullHandler());
+			return !(boolean) DBUtil2.executeQuery(sb.toString(), new IsNullHandler(), paramArr);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -179,6 +179,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 	// }
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<T> queryAll() {
 		String sql = "select *  from " + tableName;
 		try {
@@ -189,27 +190,31 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 		return null;
 	}
 
+	@Override
 	public List<T> querySome(Map<String, Object> params) {
 		return null;
 	}
 
+	@Override
 	public List<T> querySome(Map<String, Object> params, Integer begin, Integer capacity) {
 		return null;
 	}
 
+	@Override
 	public Object findAttribute(String attName, Map<String, Object> param) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" select " + attName + " from " + tableName + " where 1= 1");
 
-		List<Object> para = new ArrayList<Object>();
+		Object[] paramArr = new Object[param.size()];
+		int idx = 0;
 
 		for (Entry<String, Object> entry : param.entrySet()) {
 			sb.append(" and " + entry.getKey() + " = ? ");
-			para.add(entry.getValue());
+			paramArr[idx++] = entry.getValue();
 		}
 
 		try {
-			return DBUtil2.executeQuery(sb.toString(), para, new OneAttributeHandler());
+			return DBUtil2.executeQuery(sb.toString(), new OneAttributeHandler(),paramArr);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

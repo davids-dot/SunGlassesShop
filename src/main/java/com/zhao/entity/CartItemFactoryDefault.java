@@ -23,8 +23,9 @@ public class CartItemFactoryDefault implements CartItemFactory {
 
 		try {
 			String sql = "select goods_id,shop_id ,stock from shop_has_goods where stock >0 and goods_id = ? ";
-			CartItem cartItem = (CartItem) DBUtil2.executeQuery(sql, Arrays.asList(goods_id),
-					new BeanHandler<CartItem>(CartItem.class));
+			CartItem cartItem = (CartItem) DBUtil2.executeQuery(sql,
+					new BeanHandler<CartItem>(CartItem.class),
+					goods_id);
 			//
 			if (cartItem == null) {
 				throw new NoAvailableGoodsException("该商品暂时缺货");

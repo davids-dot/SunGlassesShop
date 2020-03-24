@@ -19,7 +19,7 @@ public class VerifyTest {
 
 		try {
 			boolean isnull = (boolean) DBUtil2.executeQuery("select * from User where 1=1 and name = ? and type = ? ",
-					param, new IsNullHandler());
+					 new IsNullHandler(), param.toArray());
 			System.out.println(isnull);
 		} catch (SQLException e) {
 			e.printStackTrace();

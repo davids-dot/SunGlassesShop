@@ -95,7 +95,7 @@ public class OrderDaoImpl implements OrderDao {
 	public boolean existOrder(Long order_id) {
 		try {
 			String sql = "select order_id from Orders where order_id = ? ";
-			return !(boolean) DBUtil2.executeQuery(sql, Arrays.asList(order_id), new IsNullHandler());
+			return !(boolean) DBUtil2.executeQuery(sql, new IsNullHandler(), order_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return true;
@@ -123,23 +123,22 @@ public class OrderDaoImpl implements OrderDao {
 			StringBuilder sb = new StringBuilder();
 			sb.append("select order_id, customer_id,status from orders where 1=1 ");
 
-			List<Object> para = new ArrayList<Object>();
-
+			Object[] para = new Object[params.size()] ;
+            int i = 0;
 			for (Entry<String, Object> entry : params.entrySet()) {
 				sb.append(" and " + entry.getKey() + " = ? ");
-
-				para.add(entry.getValue());
-
+				para[i++] = entry.getValue();
 			}
 
-			List<Order> orders = (List<Order>) DBUtil2.executeQuery(sb.toString(), para,
-					new BeanListHandler<Order>(Order.class));
+			List<Order> orders = (List<Order>) DBUtil2.executeQuery(sb.toString(),new BeanListHandler<Order>(Order.class), para
+					);
 
 			for (Order order : orders) {
 
 				String sql = "select goods_id,shop_id,num from Order_detail where order_id = ? ";
-				order.setItems((List<OrderDetail>) DBUtil2.executeQuery(sql, Arrays.asList(order.getOrder_id()),
-						new BeanListHandler<OrderDetail>(OrderDetail.class)));
+				order.setItems((List<OrderDetail>) DBUtil2.executeQuery(sql,
+						new BeanListHandler<OrderDetail>(OrderDetail.class),
+						order.getOrder_id() ));
 
 			}
 			return orders;
@@ -161,14 +160,16 @@ public class OrderDaoImpl implements OrderDao {
 
 			String sql = "select order_id, customer_id,status from orders where 1=1 and customer_id = ? limit ?,? ";
 
-			qr.setList((List<Order>) DBUtil2.executeQuery(sql, Arrays.asList(customer_id, startIndex, pageSize),
-					new BeanListHandler<Order>(Order.class)));
+			qr.setList((List<Order>) DBUtil2.executeQuery(sql,
+					new BeanListHandler<Order>(Order.class),
+				     customer_id, startIndex, pageSize ));
 
 			String sql2 = "select count(*) from orders where 1=1 and customer_id = ? ";
 
 			Integer totalRecords;
 
-			totalRecords = (Integer) DBUtil2.executeQuery(sql2, Arrays.asList(customer_id), new ResultSizeHandler());
+			totalRecords = (Integer) DBUtil2.executeQuery(sql2,  new ResultSizeHandler(),
+					customer_id);
 			qr.setTotalRecords(totalRecords);
 
 		} catch (SQLException e) {
@@ -188,28 +189,30 @@ public class OrderDaoImpl implements OrderDao {
 
 			StringBuilder sb = new StringBuilder();
 			sb.append("select order_id, customer_id,status from orders where 1=1  ");
-			List<Object> param = new ArrayList<Object>();
+			Object[] param = new Object[queryParam.size()];
+			int idx = 0;
 			for (Entry<String, Object> entry : queryParam.entrySet()) {
 				sb.append(" and " + entry.getKey() + " =  ? ");
-				param.add(entry.getValue());
+				param[idx++] = entry.getValue();
 			}
 			sb.append(" limit ? , ? ");
-			param.add(startIndex);
-			param.add(pageSize);
+			param[idx++] = startIndex;
+			param[idx++] = pageSize;
 
 			qr.setList(
-					(List<Order>) DBUtil2.executeQuery(sb.toString(), param, new BeanListHandler<Order>(Order.class)));
+					(List<Order>) DBUtil2.executeQuery(sb.toString(),new BeanListHandler<Order>(Order.class),
+					param));
 
 			int start = sb.indexOf("order_id");
 			sb.replace(start, start + 28, "count(*)");
 
 			Integer totalRecords;
-			param.remove(param.size() - 1);
-			param.remove(param.size() - 1);
+			param[--idx] = null;
+			param[--idx] = null;
 
 			sb.delete(sb.indexOf("limit"), sb.length());
 
-			totalRecords = (Integer) DBUtil2.executeQuery(sb.toString(), param, new ResultSizeHandler());
+			totalRecords = (Integer) DBUtil2.executeQuery(sb.toString(), new ResultSizeHandler(), param);
 			qr.setTotalRecords(totalRecords);
 
 		} catch (SQLException e) {
@@ -230,16 +233,17 @@ public class OrderDaoImpl implements OrderDao {
 					+ " where Orders.order_id = Order_detail.order_id " + " and shop_id = ? and status = ? limit ? , ?";
 
 			qr.setList((List<Order>) DBUtil2.executeQuery(sql,
-					Arrays.asList(shop_id, type.ordinal(), queryInfo.getStartIndex(), queryInfo.getPageSize()),
-					new BeanListHandler<Order>(Order.class)));
+					new BeanListHandler<Order>(Order.class),
+					shop_id, type.ordinal(), queryInfo.getStartIndex(), queryInfo.getPageSize() ));
 
 			String sql2 = "select count(distinct Orders.order_id) from Orders,Order_detail where Orders.order_id = Order_detail.order_id "
 					+ " and shop_id = ? and status = ? ";
 
 			Integer totalRecords;
 
-			totalRecords = (Integer) DBUtil2.executeQuery(sql2, Arrays.asList(shop_id, type.ordinal()),
-					new ResultSizeHandler());
+			totalRecords = (Integer) DBUtil2.executeQuery(sql2,
+					new ResultSizeHandler(),
+					shop_id, type.ordinal());
 			qr.setTotalRecords(totalRecords);
 
 		} catch (SQLException e) {

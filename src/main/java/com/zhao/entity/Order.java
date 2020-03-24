@@ -92,8 +92,9 @@ public class Order {
 		try {
 			String sql = "select goods_id,shop_id,num from Order_detail where order_id = ? ";
 
-			setItems((List<OrderDetail>) DBUtil2.executeQuery(sql, Arrays.asList(getOrder_id()),
-					new BeanListHandler<OrderDetail>(OrderDetail.class)));
+			setItems((List<OrderDetail>) DBUtil2.executeQuery(sql,
+					new BeanListHandler<OrderDetail>(OrderDetail.class),
+					getOrder_id()));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
