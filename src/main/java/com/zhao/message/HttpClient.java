@@ -74,7 +74,7 @@ public class HttpClient {
 
 		String resMessage = HttpClient.post("http://service.winic.org:8009/sys_port/gateway/index.asp",
 
-				"id=" + URLEncoder.encode("宇德高辉 ", "gb2312") + "&pwd=x141195&to=18706772553&content="
+				"id=" + URLEncoder.encode("宇德高辉", "gb2312") + "&pwd=x315781&to=18706772553&content="
 						+ URLEncoder.encode("你好，欢迎注册", "gb2312") + "&time=");
 		System.out.println(resMessage);
 
